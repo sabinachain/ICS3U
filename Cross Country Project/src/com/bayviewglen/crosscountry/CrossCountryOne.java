@@ -10,9 +10,6 @@ import java.text.DecimalFormat;
 import java.lang.Double;
 import java.util.Scanner;
 
-// Get rid of ln
-// Print name in one and split on space 
-
 public class CrossCountryOne {
 	private static final int SECONDS_PER_MINUTE = 60;
 	private static final String SECONDS_MILLISECONDS = "00.000";
