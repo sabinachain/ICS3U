@@ -69,14 +69,14 @@ public class CrossCountryOne {
 		double secTimeThird1 = convertStringTimeToSec(timeThird1);
 
 		// Summary for Runner 1
-		System.out.println("Runner 1 Name: " + fullName1);
+		System.out.println("\nRunner 1 Name: " + fullName1);
 		System.out.println("Split 1 Time: " + convertDoubleToStringTime(secTimeFirst1));
 		System.out.println("Split 2 Time: " + convertDoubleToStringTime(secTimeSecond1 - secTimeFirst1));
 		System.out.println("Split 3 Time: " + convertDoubleToStringTime(secTimeThird1 - secTimeSecond1));
 		System.out.println("Total Time: " + convertDoubleToStringTime(secTimeThird1));
 			
 		// Runner 2, End of Mile 1
-		System.out.print("Please enter Runner 2's full name: ");
+		System.out.print("\nPlease enter Runner 2's full name: ");
 		String fullName2 = keyboard.nextLine();
 		// Take the first name only
 		String firstName2 = extractFirstName(fullName2);
@@ -99,14 +99,14 @@ public class CrossCountryOne {
 		double secTimeThird2 = convertStringTimeToSec(timeThird2);
 
 		// Summary for Runner 2
-		System.out.println("Runner 2 Name: " + fullName2);
+		System.out.println("\nRunner 2 Name: " + fullName2);
 		System.out.println("Split 1 Time: " + convertDoubleToStringTime(secTimeFirst2));
 		System.out.println("Split 2 Time: " + convertDoubleToStringTime(secTimeSecond2 - secTimeFirst2));
 		System.out.println("Split 3 Time: " + convertDoubleToStringTime(secTimeThird2 - secTimeSecond2));
 		System.out.println("Total Time: " + convertDoubleToStringTime(secTimeThird2));
 	
 		// Runner 3, End of Mile 1
-		System.out.print("Please enter Runner 3's full name: ");
+		System.out.print("\nPlease enter Runner 3's full name: ");
 		String fullName3 = keyboard.nextLine();
 		// Take the first name only
 		String firstName3 = extractFirstName(fullName3);
@@ -128,14 +128,14 @@ public class CrossCountryOne {
 		double secTimeThird3 = convertStringTimeToSec(timeThird3);
 
 		// Summary for Runner 3
-		System.out.println("Runner 3 Name: " + fullName3);
+		System.out.println("\nRunner 3 Name: " + fullName3);
 		System.out.println("Split 1 Time: " + convertDoubleToStringTime(secTimeFirst3));
 		System.out.println("Split 2 Time: " + convertDoubleToStringTime(secTimeSecond3 - secTimeFirst3));
 		System.out.println("Split 3 Time: " + convertDoubleToStringTime(secTimeThird3 - secTimeSecond3));
 		System.out.println("Total Time: " + convertDoubleToStringTime(secTimeThird3));
 		
 		// Runner 4, End of Mile 1
-		System.out.print("Please enter Runner 4's full name: ");
+		System.out.print("\nPlease enter Runner 4's full name: ");
 		String fullName4 = keyboard.nextLine();
 		// Take the first name only
 		String firstName4 = extractFirstName(fullName4);
@@ -157,14 +157,14 @@ public class CrossCountryOne {
 		double secTimeThird4 = convertStringTimeToSec(timeThird4);
 
 		// Summary for Runner 4
-		System.out.println("Runner 4 Name: " + fullName4);
+		System.out.println("\nRunner 4 Name: " + fullName4);
 		System.out.println("Split 1 Time: " + convertDoubleToStringTime(secTimeFirst4));
 		System.out.println("Split 2 Time: " + convertDoubleToStringTime(secTimeSecond4 - secTimeFirst4));
 		System.out.println("Split 3 Time: " + convertDoubleToStringTime(secTimeThird4 - secTimeSecond4));
 		System.out.println("Total Time: " + convertDoubleToStringTime(secTimeThird4));
 		
 		// Runner 5, End of Mile 1
-		System.out.print("Please enter Runner 5's full name: ");
+		System.out.print("\nPlease enter Runner 5's full name: ");
 		String fullName5 = keyboard.nextLine();
 		// Take the first name only
 		String firstName5 = extractFirstName(fullName5);
@@ -186,7 +186,7 @@ public class CrossCountryOne {
 		double secTimeThird5 = convertStringTimeToSec(timeThird5);
 
 		// Summary for Runner 5
-		System.out.println("Runner 5 Name: " + fullName5);
+		System.out.println("\nRunner 5 Name: " + fullName5);
 		System.out.println("Split 1 Time: " + convertDoubleToStringTime(secTimeFirst5));
 		System.out.println("Split 2 Time: " + convertDoubleToStringTime(secTimeSecond5 - secTimeFirst5));
 		System.out.println("Split 3 Time: " + convertDoubleToStringTime(secTimeThird5 - secTimeSecond5));
