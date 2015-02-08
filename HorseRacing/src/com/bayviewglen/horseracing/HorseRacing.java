@@ -1,5 +1,14 @@
 package com.bayviewglen.horseracing;
-
+/* Name: Sabina Beleuz-Neagu
+ * Course: ICS3U-AP
+ * Title: Horse-Racing Assignment
+ * Description: A multi-player game where players select horses to bet on and then watch the race in time-steps. 
+ * Extra Feature: A two-dimensional array for bets so that players can bet on more than one horse. 
+ * Betting Style: Winner gets all betting funds collected from every player. 
+ * If there are multiple they share the funds collected proportionally based on their own bet amounts. 
+ * Due Date: 2/9/2015
+ * Teacher: Mr. DesLauriers 
+*/
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -83,7 +92,7 @@ public class HorseRacing {
 		}
 	}
 	
-	//save players file by overwriting file. 
+	//save players file by overwriting file in this name
 	private static void savePlayersToFile(String fileName, String[] p, Integer[] w) {
         File file = new File(fileName);
         FileWriter fw = null;
@@ -107,7 +116,7 @@ public class HorseRacing {
         }
     }
 	
-	//pay the bets for winner horse (index in array is winH)
+	//pay the bets for winner's horse (index in array is winH for winning horse)
 	private static void payPlayerBet(String[] h, String[] p, Integer[] w, Integer[][] b, int winH) {
 		int totalBetAmount=0;
 		int winHorseBetAmount=0;
@@ -182,14 +191,14 @@ public class HorseRacing {
 					selectPlayerHorse = true;
 				}
 			} else {
-				System.out.println("Must select horse using a number.");
+				System.out.println("Must select a horse using a number.");
 				sc.next();
 			}
 		}
 	}
 
-	//Extra feature: multiple horse bet for winner.
-	//The implementation is done using 2 dimensional array Integer[players.length][horses.length]
+	//Extra feature: multiple betting for winning horse. 
+	//The implementation is done using a 2 dimensional array Integer[players.length][horses.length]
 	//set the bet amount for player and horse selected, see element b[numberP][numberH].
 	private static void placeBetPlayerHorse(String[] h, String[] p, Integer[] w,
 			Integer[][] b, int numberP, int numberH, Scanner sc) {
