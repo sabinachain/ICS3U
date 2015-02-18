@@ -1,4 +1,4 @@
-package com.bayviewglen.junior1;
+package com.bayviewglen.alljunior2013;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner; 
