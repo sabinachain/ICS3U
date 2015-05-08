@@ -1,0 +1,39 @@
+Room Name: Room 106
+Room Description: You are in classroom 106.
+Exit Rooms: S-Common Area
+Room Name: Common Area
+Room Description: You are in the Grade 12 Common Area.
+Exit Rooms: N-Room 106, W-Gym Hallway, U-East Staircase
+Room Name: Gym Hallway
+Room Description: You are in the Gym Hallway.
+Exit Rooms: E-Common Area, N-IT Office, W-Gym, U-Center Staircase
+Room Name: Gym
+Room Description: You are in the Upper School Gym.
+Exit Rooms: E-Gym Hallway, W-West Staircase
+Room Name: IT Office
+Room Description: You are in the Information Technology office.
+Exit Rooms: S-Gym Hallway
+Room Name: West Staircase
+Room Description: You are in the West Staircase, second floor.
+Exit Rooms: U-Math Hallway, D-Gym, E-Drama Hallway
+Room Name: Center Staircase
+Room Description: You are in the Center Staircase, second floor.
+Exit Rooms: S-Foyer, U-Math Hallway, D-Gym Hallway
+Room Name: Drama Hallway
+Room Description: You are in the Drama Hallway.
+Exit Rooms: E-Foyer, W-West Staircase
+Room Name: Foyer
+Room Description: You are in the Foyer.
+Exit Rooms: N-Center Staircase, W-Drama Hallway, E-Music Hallway
+Room Name: Music Hallway
+Room Description: You are in the Music Hallway.
+Exit Rooms: N-Foyer, W-East Staircase
+Room Name: Math Hallway
+Room Description: You are in the Math Hallway.
+Exit Rooms: W-West Staircase, N-Center Staircase, E-Grade 11 Area
+Room Name: Grade 11 Area
+Room Description: You are in the Grade 11 Area.
+Exit Rooms: W-Math Hallway, D-East Staircase
+Room Name: East Staircase
+Room Description: You are in the East Staircase, second floor.
+Exit Rooms: D-Common Area, U-Grade 11 Area, E-Music Hallway
