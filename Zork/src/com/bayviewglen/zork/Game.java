@@ -90,7 +90,7 @@ class Game
     }    
 
     /**
-     * Create the game and initialise its internal map.
+     * Create the game and initialize its internal map.
      */
     public Game() {
         try {
@@ -142,7 +142,7 @@ class Game
      * If this command ends the game, true is returned, otherwise false is
      * returned.
      */
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command command)
     {
         if(command.isUnknown())
         {
@@ -164,6 +164,24 @@ class Game
         }else if (commandWord.equals("eat")){
         	System.out.println("Do you really think you should be eating at a time like this?");
         }
+        else if (commandWord.equals("n")){
+        	processCommand(new Command("go","north"));
+        }
+        else if (commandWord.equals("e")){
+        	processCommand(new Command("go","east"));
+        }
+        else if (commandWord.equals("s")){
+        	processCommand(new Command("go","south"));
+        }
+        else if (commandWord.equals("w")){
+        	processCommand(new Command("go","west"));
+        }
+        else if (commandWord.equals("u")){
+        	processCommand(new Command("go","up"));
+        }
+        else if (commandWord.equals("d")){
+        	processCommand(new Command("go","down"));
+        }
         return false;
     }
 
@@ -177,7 +195,7 @@ class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at Monash Uni, Peninsula Campus.");
+        System.out.println("around at Bayview Glen, Moatfield Campus.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();

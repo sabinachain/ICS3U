@@ -93,8 +93,7 @@ class Room
      *     Exits: north west
      */
     public String longDescription()
-    {
-    	
+    {    	
         return "Room: " + roomName +"\n" + description + "\n" + exitString();
     }
 
