@@ -5,8 +5,8 @@ package com.bayviewglen.zork;
  * Date:    July 1999
  * 
  * This class holds an enumeration of all command words known to the game.
- * It is used to recognise commands as they are typed in.
- *
+ * It is used to recognize commands as they are typed in.
+ * 
  * This class is part of the "Zork" game.
  */
 

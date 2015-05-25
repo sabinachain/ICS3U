@@ -21,7 +21,10 @@ Room Description: You are in the Center Staircase, second floor.
 Exit Rooms: S-Foyer, U-Math Hallway, D-Gym Hallway
 Room Name: Drama Hallway
 Room Description: You are in the Drama Hallway.
-Exit Rooms: E-Foyer, W-West Staircase
+Exit Rooms: E-Foyer, W-West Staircase S-Room 212
+Room Name: Room 212
+Room Description: You are in classroom 212, the AP Examination room.
+Exit Rooms: N-Drama Hallway
 Room Name: Foyer
 Room Description: You are in the Foyer.
 Exit Rooms: N-Center Staircase, W-Drama Hallway, E-Music Hallway
