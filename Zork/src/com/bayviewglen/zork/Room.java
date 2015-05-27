@@ -32,7 +32,7 @@ class Room
     public Room(String description) 
     {
         this.description = description;
-        this.roomInventory = new Inventory();
+        this.setRoomInventory(new Inventory());
         exits = new HashMap<String, Room>();
     }
 
@@ -135,5 +135,13 @@ class Room
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Inventory getRoomInventory() {
+		return roomInventory;
+	}
+
+	public void setRoomInventory(Inventory roomInventory) {
+		this.roomInventory = roomInventory;
 	}
 }
