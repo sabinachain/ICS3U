@@ -165,22 +165,22 @@ class Game
         	System.out.println("Do you really think you should be eating at a time like this?");
         }
         else if (commandWord.equals("n")){
-        	processCommand(new Command("go","north"));
+        	processCommand(new Command("go","north", "", ""));
         }
         else if (commandWord.equals("e")){
-        	processCommand(new Command("go","east"));
+        	processCommand(new Command("go","east", "", ""));
         }
         else if (commandWord.equals("s")){
-        	processCommand(new Command("go","south"));
+        	processCommand(new Command("go","south", "", ""));
         }
         else if (commandWord.equals("w")){
-        	processCommand(new Command("go","west"));
+        	processCommand(new Command("go","west", "", ""));
         }
         else if (commandWord.equals("u")){
-        	processCommand(new Command("go","up"));
+        	processCommand(new Command("go","up", "", ""));
         }
         else if (commandWord.equals("d")){
-        	processCommand(new Command("go","down"));
+        	processCommand(new Command("go","down", "", ""));
         }
         return false;
     }
