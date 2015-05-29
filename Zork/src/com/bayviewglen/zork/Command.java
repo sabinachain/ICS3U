@@ -7,15 +7,17 @@ package com.bayviewglen.zork;
  * date:    July 1999
  *
  * This class holds information about a command that was issued by the user.
- * A command currently consists of two strings: a command word and a second
+ * A command currently consists of four strings: a command word, a second
  * word (for example, if the command was "take map", then the two strings
- * obviously are "take" and "map").
+ * obviously are "take" and "map"), optionally a third word (which denotes
+ * a transition word, usually "to" or "with"), and a fourth word (which will 
+ * probably indicate a target for the command).
  * 
  * The way this is used is: Commands are already checked for being valid
  * command words. If the user entered an invalid command (a word that is not
  * known) then the command word is <null>.
  *
- * If the command had only one word, then the second word is <null>.
+ * If the command had only one word, then the second, third, and fourth words are <null>.
  *
  * The second word is not checked at the moment. It can be anything. If this
  * game is extended to deal with items, then the second part of the command

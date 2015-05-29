@@ -59,19 +59,25 @@ public class Inventory {
 		}
 	}
 
-	public boolean hasItem(Item i) {
+	public boolean hasItem(String i) {
 		if (items.containsKey(i)) {
 			return true;
 		} else {
 			return false;
 		}
-
-		// addItem - return boolean
-		// hasItem - return boolean
-		// dropItem- return Item
-		// display Inventory - return String
-
-		//
-
 	}
+
+	public Item removeItem(String key) {
+		return items.remove(key);
+	}
+	
+	
+
+	// addItem - return boolean
+	// hasItem - return boolean
+	// dropItem- return Item
+	// display Inventory - return String
+
+	//
+
 }
