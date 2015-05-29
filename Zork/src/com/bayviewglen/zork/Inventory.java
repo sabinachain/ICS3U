@@ -59,7 +59,7 @@ public class Inventory {
 		}
 	}
 
-	public boolean hasItem(Item i) {
+	public boolean hasItem(String i) {
 		if (items.containsKey(i)) {
 			return true;
 		} else {

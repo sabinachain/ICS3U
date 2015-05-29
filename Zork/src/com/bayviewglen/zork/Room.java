@@ -103,6 +103,7 @@ class Room
      * Return a string describing the room's exits, for example
      * "Exits: north west ".
      */
+
     private String exitString()
     {
         String returnString = "Exits:";

@@ -33,6 +33,7 @@ class Game
     // In a hashmap keys are case sensitive.
     // masterRoomMap.get("GREAT_ROOM") will return the Room Object that is the Great Room (assuming you have one).
     private HashMap<String, Room> masterRoomMap;
+    private Inventory playerInventory;
     
     private void initRooms(String fileName) throws Exception{
     	masterRoomMap = new HashMap<String, Room>();
@@ -163,6 +164,45 @@ class Game
                 return true;  // signal that we want to quit
         }else if (commandWord.equals("eat")){
         	System.out.println("Do you really think you should be eating at a time like this?");
+        }
+        else if (commandWord.equals("use")){
+            if(!command.hasSecondWord()) //if it lacks a second word
+            System.out.println("use what?"); //Placeholder
+            else if (playerInventory.hasItem(command.getSecondWord())){
+                //code to make item use
+            }
+        }
+        else if (commandWord.equals("take")){
+            if(!command.hasSecondWord()) //if it lacks a second word
+            System.out.println("take what?"); //Placeholder
+            else if (currentRoom.getRoomInventory().hasItem(command.getSecondWord())) {
+                //code to take items
+            	}
+        }
+        else if (commandWord.equals("give")){	
+            if(!command.hasSecondWord()) //if it lacks a second word
+            System.out.println("give what?"); //Placeholder
+            else if (playerInventory.hasItem(command.getSecondWord())) {
+            	if(!command.hasThirdWord())
+            	System.out.println("give " + command.getSecondWord() + " what?");
+            	else if(command.getThirdWord().equals("to")) {
+            		if(command.hasFourthWord()){
+            			//Code for item giving not implemented yet
+            		}
+            	}
+            	else
+            	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord());
+            }
+        }
+        else if (commandWord.equals("hit")){
+            //if(!command.hasSecondWord()) //if it lacks a second word       	
+            System.out.println("hit what?"); //Placeholder	
+            //check if third or fourth word missing
+            //System.out.println("hit that with what?");
+            //code to make item give
+        }
+        else if (commandWord.equals("smash")){
+            System.out.println("smash what?"); //Placeholder     	
         }
         else if (commandWord.equals("n")){
         	processCommand(new Command("go","north", "", ""));
