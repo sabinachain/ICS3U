@@ -98,6 +98,7 @@ class Game
         	playerInventory = new Inventory();
 			initRooms("data/rooms.dat");
 			currentRoom = masterRoomMap.get("ROOM_106");
+			playerInventory = new Inventory();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +171,9 @@ class Game
             if(!command.hasSecondWord()) //if it lacks a second word
             System.out.println("use what?"); //Placeholder
             else if (playerInventory.hasItem(command.getSecondWord())){
-                //code to make item use
+                //Code to make item use
+            } else {
+            System.out.println("You don't have that item!");
             }
         }
         else if (commandWord.equals("take")){
@@ -178,6 +181,8 @@ class Game
             System.out.println("take what?"); //Placeholder
             else if (currentRoom.getRoomInventory().hasItem(command.getSecondWord())) {
                 //code to take items
+            	} else {
+            	System.out.println("This room doesn't have that item!");
             	}
         }
         else if (commandWord.equals("give")){	
@@ -193,6 +198,8 @@ class Game
             	}
             	else
             	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord());
+            } else {
+            System.out.println("You don't have that item!");
             }
         }
         else if (commandWord.equals("hit")){
@@ -200,7 +207,7 @@ class Game
             System.out.println("hit what?"); //Placeholder	
             //check if third or fourth word missing
             //System.out.println("hit that with what?");
-            //code to make item give
+            //code to hit stuffs
         }
         else if (commandWord.equals("smash")){
             System.out.println("smash what?"); //Placeholder     	
