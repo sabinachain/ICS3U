@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Inventory {
+public class Inventory  implements Serializable {
 	private HashMap<String, Item> items;
 	private double currentWeight;
 	private double maxWeight;

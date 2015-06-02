@@ -2,6 +2,8 @@ package com.bayviewglen.zork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -24,9 +26,9 @@ import java.util.Scanner;
  *  commands that the parser returns.
  */
 
-class Game 
+class Game implements java.io.Serializable
 {
-    private Parser parser;
+	private Parser parser;
     private Room currentRoom;
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
@@ -238,6 +240,39 @@ class Game
         else if (commandWord.equals("d")){
         	processCommand(new Command("go","down", "", ""));
         }
+        else if (commandWord.equals("save")){
+        	// Write to disk with FileOutputStream
+        	try{
+        	FileOutputStream f_out = new 
+        		FileOutputStream("savegame1.data");
+
+        	// Write object with ObjectOutputStream
+        	ObjectOutputStream obj_out = new
+        		ObjectOutputStream (f_out);
+
+			// Write object out to disk
+        	obj_out.writeObject ( this );
+        	obj_out.close();
+        	}catch(Exception ex){
+        		
+        	}
+        }
+        /*
+        else if (commandWord.equals("load")){
+        	// Read from disk using FileInputStream
+        	try{
+        	FileInputStream f_in = new 
+        		FileInputStream("savegame.data");
+
+        	// Read object using ObjectInputStream
+        	ObjectInputStream obj_in = 
+        		new ObjectInputStream (f_in);
+
+        	// Read an object
+        	Object obj = obj_in.readObject();
+        	} catch (Exception ex) {
+        	} 
+        } */
         return false;
     }
     
