@@ -176,16 +176,24 @@ class Game
             System.out.println("You don't have that item!");
             }
         }
+        else if (commandWord.equals("drop")){
+        	dropItem(command);
+        }
+        else if (commandWord.equals("take")){
+        	takeItem(command);
+        }
+        /*
         else if (commandWord.equals("take")){
             if(!command.hasSecondWord()) //if it lacks a second word
             System.out.println("take what?"); //Placeholder
             else if (currentRoom.getRoomInventory().hasItem(command.getSecondWord())) {
-                //code to take items
+                playerInventory.addItem(command.getSecondWord());
             	} else {
             	System.out.println("This room doesn't have that item!");
             	}
         }
-        else if (commandWord.equals("give")){	
+		*/
+        else if (commandWord.equals("give")){
             if(!command.hasSecondWord()) //if it lacks a second word
             System.out.println("give what?"); //Placeholder
             else if (playerInventory.hasItem(command.getSecondWord())) {
@@ -230,15 +238,47 @@ class Game
         else if (commandWord.equals("d")){
         	processCommand(new Command("go","down", "", ""));
         }
-        else if (command.equals("drop")){
-        	dropItem(command);
-        }
         return false;
     }
+    
+    private void takeItem(Command command) {
+    	String itemToTake = command.getSecondWord();
+		// Add this item to the playerInventory
 
+		if (itemToTake == null) {
+			System.out.println("Take What?");
+		} else {
+			Item i = currentRoom.getRoomInventory().removeItem(itemToTake);
+			if (i == null) { //YES I AM ENTIRELY RELYING ON SOMEONE ELSE'S CODE WORKING
+				System.out.println("The room doesn't have a " + command.getSecondWord() + " to take!");
+			} else {
+				playerInventory.addItem(i);
+				System.out.println("You have taken the " + itemToTake + ".");
+			}
+		}
+	}
+
+	private void dropItem(Command command) {
+    	String itemToDrop = command.getSecondWord();
+		// Add this item to the roomInventory
+
+		if (itemToDrop == null) {
+			System.out.println("Drop What?");
+		} else {
+			Item i = playerInventory.removeItem(itemToDrop);
+			if (i == null) {
+				System.out.println("You don't have a " + itemToDrop + " to drop!");
+			} else {
+				currentRoom.getRoomInventory().addItem(i);
+				System.out.println("You have dropped the " + itemToDrop + ".");
+			}
+		}
+		
+	}
+    
     // implementations of user commands:
 
-    /**
+	/**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
@@ -278,23 +318,5 @@ class Game
             System.out.println(currentRoom.longDescription());
         }
     }
-    
-    private void dropItem(Command command) {
-    	String itemToDrop = command.getSecondWord();
-		// Add this item to the roomInventory
-
-		if (itemToDrop == null) {
-			System.out.println("Drop What??");
-		}else {
-			Item i = playerInventory.removeItem(itemToDrop);
-			if (i == null) {
-				System.out.println("Are you sure you have a " + itemToDrop);
-			}else {
-				currentRoom.getRoomInventory().addItem(i);
-				System.out.println("You have dropped the " + itemToDrop + ".");
-			}
-		}
-		
-	}
-  
+   
 }

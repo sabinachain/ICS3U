@@ -10,6 +10,12 @@ public class Item {
 		this.weight = weight;
 	}
 	
+	public Item() {
+		super();
+		this.name = "";
+		this.weight = 0;
+	}
+	
 	public String getName() {
 		return name;
 	}

@@ -41,6 +41,7 @@ class Room
     	roomName = "DEFAULT ROOM";
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
+    	roomInventory = new Inventory();
 	}
 
     public void setExit(char direction, Room r) throws Exception{
