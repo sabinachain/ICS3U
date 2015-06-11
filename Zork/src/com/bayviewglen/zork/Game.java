@@ -273,6 +273,9 @@ class Game implements java.io.Serializable
         	} catch (Exception ex) {
         	} 
         } */
+        else if (commandWord.equals("xyzzy")){
+            System.out.println("What game do you think this is?"); //Placeholder     	
+        }
         return false;
     }
     
