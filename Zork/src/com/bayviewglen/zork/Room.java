@@ -25,6 +25,7 @@ class Room implements Serializable
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Inventory roomInventory;
+    private Character roomCharacter;
     
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -34,7 +35,7 @@ class Room implements Serializable
     {
         this.description = description;
         this.setRoomInventory(new Inventory());
-        exits = new HashMap<String, Room>();
+    	exits = new HashMap<String, Room>();
     }
 
     public Room() {
@@ -43,6 +44,7 @@ class Room implements Serializable
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
     	roomInventory = new Inventory();
+    	roomCharacter = null; //Don't construct characters that don't exist
 	}
 
     public void setExit(char direction, Room r) throws Exception{
@@ -147,4 +149,6 @@ class Room implements Serializable
 	public void setRoomInventory(Inventory roomInventory) {
 		this.roomInventory = roomInventory;
 	}
+	
+	
 }

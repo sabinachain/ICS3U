@@ -23,7 +23,6 @@ public Character(String name, int hp) {
 
 public Character() {
 	super();
-	this.name = null;
 	this.hp = 0;
 	this.inventory = null;
 	}
@@ -51,4 +50,6 @@ public Inventory getInventory() {
 public void setInventory(Inventory inventory) {
 	this.inventory = inventory;
 }
+
+
 }

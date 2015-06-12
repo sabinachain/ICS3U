@@ -170,13 +170,7 @@ class Game implements java.io.Serializable
         	System.out.println("Do you really think you should be eating at a time like this?");
         }
         else if (commandWord.equals("use")){
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("use what?"); //Placeholder
-            else if (playerInventory.hasItem(command.getSecondWord())){
-                //Code to make item use
-            } else {
-            System.out.println("You don't have that item!");
-            }
+            useItem(command);
         }
         else if (commandWord.equals("drop")){
         	dropItem(command);
@@ -184,33 +178,8 @@ class Game implements java.io.Serializable
         else if (commandWord.equals("take")){
         	takeItem(command);
         }
-        /*
-        else if (commandWord.equals("take")){
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("take what?"); //Placeholder
-            else if (currentRoom.getRoomInventory().hasItem(command.getSecondWord())) {
-                playerInventory.addItem(command.getSecondWord());
-            	} else {
-            	System.out.println("This room doesn't have that item!");
-            	}
-        }
-		*/
         else if (commandWord.equals("give")){
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("give what?"); //Placeholder
-            else if (playerInventory.hasItem(command.getSecondWord())) {
-            	if(!command.hasThirdWord())
-            	System.out.println("give " + command.getSecondWord() + " what?");
-            	else if(command.getThirdWord().equals("to")) {
-            		if(command.hasFourthWord()){
-            			//Code for item giving not implemented yet
-            		}
-            	}
-            	else
-            	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord());
-            } else {
-            System.out.println("You don't have that item!");
-            }
+            giveItem(command);
         }
         else if (commandWord.equals("hit")){
             //if(!command.hasSecondWord()) //if it lacks a second word       	
@@ -279,6 +248,27 @@ class Game implements java.io.Serializable
         return false;
     }
     
+    // implementations of user commands:
+    
+	private void useItem(Command command) {
+    	String itemToUse = command.getSecondWord();
+		// Add this item to the roomInventory
+
+		if (itemToUse == null) {
+			System.out.println("Use What?");
+		} else {
+			Item i = playerInventory.useItem(itemToUse);
+			if (i == null) {
+				System.out.println("You don't haove a " + itemToUse + " to use!");
+			} else {
+				playerInventory.useItem(itemToUse);
+				i.use();
+				System.out.println("You have used the " + itemToUse + ".");
+			}
+		}
+		
+	}
+    
     private void takeItem(Command command) {
     	String itemToTake = command.getSecondWord();
 		// Add this item to the playerInventory
@@ -314,8 +304,24 @@ class Game implements java.io.Serializable
 		
 	}
     
-    // implementations of user commands:
-
+	private void giveItem (Command command) {
+        if(!command.hasSecondWord()) //if it lacks a second word
+        System.out.println("give what?"); //Placeholder
+        else if (playerInventory.hasItem(command.getSecondWord())) {
+        	if(!command.hasThirdWord())
+        	System.out.println("give " + command.getSecondWord() + " what?");
+        	else if(command.getThirdWord().equals("to")) {
+        		if(command.hasFourthWord()){
+        			//Code for item giving not implemented yet
+        		}
+        	}
+        	else
+        	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord() + " what?");
+        } else {
+        System.out.println("You don't have that item!");
+        }
+	}
+	
 	/**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 

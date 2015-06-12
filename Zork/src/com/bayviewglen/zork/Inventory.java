@@ -3,7 +3,7 @@ package com.bayviewglen.zork;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Inventory  implements Serializable {
+public class Inventory implements Serializable {
 	private HashMap<String, Item> items;
 	private double currentWeight;
 	private double maxWeight;
@@ -72,13 +72,17 @@ public class Inventory  implements Serializable {
 		return items.remove(key);
 	}
 	
-	
+	public Item useItem(String key) {
+		//i.use();
+		return items.get(key);
+		}
 
 	// addItem - return boolean
 	// hasItem - return boolean
 	// dropItem- return Item
 	// display Inventory - return String
 
-	//
+	// removeItem - void
+	// useItem - void
 
 }
