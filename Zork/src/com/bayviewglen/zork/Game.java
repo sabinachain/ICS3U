@@ -309,12 +309,19 @@ class Game implements java.io.Serializable
         System.out.println("give what?"); //Placeholder
         else if (playerInventory.hasItem(command.getSecondWord())) {
         	if(!command.hasThirdWord())
-        	System.out.println("give " + command.getSecondWord() + " what?");
-        	else if(command.getThirdWord().equals("to")) {
-        		if(command.hasFourthWord()){
-        			//Code for item giving not implemented yet
-        		}
+        	{
+        		System.out.println("give " + command.getSecondWord() + " what?"); 
         	}
+        	else if(command.getThirdWord().equals("to")) { //Only possible word right now
+        		if(command.hasFourthWord()){
+        			if(command.getFourthWord().equals(currentRoom.getRoomCharacter().getName())); {
+        				Item i = playerInventory.removeItem(command.getSecondWord()); //Removes item from player
+        				currentRoom.getRoomCharacter().getInventory().addItem(i); //Gives it to non-player character
+        			}
+        			} else {
+        				System.out.println("That character is not in this room!");
+        			}
+        		}
         	else
         	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord() + " what?");
         } else {

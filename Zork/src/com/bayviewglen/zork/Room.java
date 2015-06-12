@@ -35,6 +35,7 @@ class Room implements Serializable
     {
         this.description = description;
         this.setRoomInventory(new Inventory());
+        this.setRoomCharacter(new Character());
     	exits = new HashMap<String, Room>();
     }
 
@@ -150,5 +151,11 @@ class Room implements Serializable
 		this.roomInventory = roomInventory;
 	}
 	
+	public Character getRoomCharacter() {
+		return roomCharacter;
+	}
 	
+	public void setRoomCharacter(Character roomCharacter) {
+		this.roomCharacter = roomCharacter;
+	}
 }
