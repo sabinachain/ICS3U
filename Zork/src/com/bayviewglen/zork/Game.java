@@ -182,11 +182,7 @@ class Game implements java.io.Serializable
             giveItem(command);
         }
         else if (commandWord.equals("hit")){
-            //if(!command.hasSecondWord()) //if it lacks a second word       	
-            System.out.println("hit what?"); //Placeholder	
-            //check if third or fourth word missing
-            //System.out.println("hit that with what?");
-            //code to hit stuffs
+            hitThing(command);
         }
         else if (commandWord.equals("smash")){
             System.out.println("smash what?"); //Placeholder     	
@@ -247,8 +243,8 @@ class Game implements java.io.Serializable
         }
         return false;
     }
-    
-    // implementations of user commands:
+
+	// implementations of user commands:
     
 	private void useItem(Command command) {
     	String itemToUse = command.getSecondWord();
@@ -328,6 +324,29 @@ class Game implements java.io.Serializable
         System.out.println("You don't have that item!");
         }
 	}
+	
+    private void hitThing(Command command) {
+        if(!command.hasSecondWord()) //if it lacks a second word
+        System.out.println("hit what?"); //Placeholder
+        if (command.getSecondWord().equals(currentRoom.getRoomCharacter().getName())); {
+        	if(!command.hasThirdWord())
+        	{
+        		System.out.println("hit " + command.getSecondWord() + " what?"); 
+        	}
+        	else if(command.getThirdWord().equals("with")) { //Only possible word right now
+        		if(command.hasFourthWord()) {
+        	        if (playerInventory.hasItem(command.getFourthWord())) {
+        	        	
+        			}
+        			} else {
+        				System.out.println("You don't have that weapon!");
+        			}
+        	}
+        	else
+        	System.out.println("hit " + command.getSecondWord() + " " + command.getThirdWord() + " what?");
+        } if(!command.getSecondWord().equals(currentRoom.getRoomCharacter().getName())) { System.out.println("That character is not in the room."); }
+	} //Technically not supposed to do that, but eclipse disallowed an "else" there.
+      //Don't worry, that "if" and the other big "if" can't both be executed at once.
 	
 	/**
      * Print out some help information.
