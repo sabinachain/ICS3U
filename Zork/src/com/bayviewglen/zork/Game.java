@@ -13,7 +13,8 @@ import java.util.Scanner;
 /**
  * Class Game - the main class of the "Zork" game.
  *
- * Author: Michael Kolling Version: 1.1 Date: March 2000
+ * Original Author: Michael Kolling Version: 1.1 Date: March 2000
+ * Additions made by Sabina Beleuz Neagu (Game, Inventory, and Item Levels), by Ross West (Parser, Command, CommandWords) and Zane Feder (Characters) 
  * 
  * This class is the main class of the "Zork" application. Zork is a very
  * simple, text based adventure game. Users can walk around some scenery. That's
@@ -41,7 +42,7 @@ class Game implements java.io.Serializable {
 	// Great Room (assuming you have one).
 	private HashMap<String, Room> masterRoomMap;
 	private Inventory playerInventory;
-
+	final static String SAVED_GAME_FILE = "savegame.data"; 
 	private void initRooms(String fileName) throws Exception {
 		masterRoomMap = new HashMap<String, Room>();
 		Scanner roomScanner;
@@ -167,8 +168,8 @@ class Game implements java.io.Serializable {
 	 */
 	private void printWelcome() {
 		System.out.println();
-		System.out.println("Welcome to Zork!");
-		System.out.println("Zork is a new, incredibly boring adventure game.");
+		System.out.println("Welcome to Zork: The Search for the Lost Code.");
+		System.out.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -228,7 +229,7 @@ class Game implements java.io.Serializable {
 		} else if (commandWord.equals("save")) {
 			// Write to disk with FileOutputStream
 			try {
-				FileOutputStream f_out = new FileOutputStream("savegame1.data");
+				FileOutputStream f_out = new FileOutputStream(SAVED_GAME_FILE);
 
 				// Write object with ObjectOutputStream
 				ObjectOutputStream obj_out = new ObjectOutputStream(f_out);
