@@ -4,6 +4,7 @@ Play the game by following the instructions and typing one of the appropriate co
 
 Special features of the Game: 
 Teleporter to Random room 
+"back" command that lets you go back to the previous room infinitely until you reach the first room you were in.
 Load/Save functionality
 Loading rooms, items
 Customizable data files for rooms, items
