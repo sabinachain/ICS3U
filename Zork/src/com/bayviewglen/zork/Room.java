@@ -44,7 +44,7 @@ class Room implements Serializable
     	roomName = "DEFAULT ROOM";
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
-    	roomInventory = new Inventory();
+    	roomInventory = new Inventory(true); //For room, we must call the constructor with max double limit 
 
 
     	roomCharacter = null; //Don't construct characters that don't exist

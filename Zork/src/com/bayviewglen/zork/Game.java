@@ -106,7 +106,8 @@ class Game implements java.io.Serializable {
 				// Room: bla bla bla
 				String roomLine = itemScanner.nextLine();
 				String fullRoomName = roomLine.split(":")[1].trim();
-				String keyRoom = fullRoomName.toUpperCase().replaceAll(" ", "_");
+				String keyRoom = fullRoomName.toUpperCase()
+						.replaceAll(" ", "_");
 
 				// Item: USB; using USB;0.001
 				String itemList = itemScanner.nextLine();
@@ -280,11 +281,14 @@ class Game implements java.io.Serializable {
 			Item i = currentRoom.getRoomInventory().removeItem(itemToTake);
 
 			if (i == null) {
-				System.out.println("The room doesn't have a "
-						+ command.getSecondWord() + " to take!");
-			} else {// x
-				playerInventory.addItem(i);
-				System.out.println("You have taken the " + itemToTake + ".");
+				System.out.println("The room doesn't have a " + command.getSecondWord() + " to take!");
+			} else {
+				if (playerInventory.addItem(i)) {
+					System.out
+							.println("You have taken the " + itemToTake + ".");
+				} else {
+					System.out.println("You cannot take the " + itemToTake + ".");
+				}
 			}
 		}
 	}

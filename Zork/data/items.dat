@@ -1,8 +1,10 @@
 Room Name: Room 106
 Item:USB;You downloaded the data, but it is encrypted.;0.02 
 Room Name: Common Area
-Item:Laptop;You try to send an email, but the wifi is down.;2
+Item:laptop;You try to send an email, but the wifi is down.;2
 Room Name: IT Office 
-Item:WIFI;Reconnect it to turn on WIFI and get internet access.;0
+Item:wifi router;Reconnect it to turn on WIFI and get internet access.;0
 Room Name: Gym Hallway
-Item:Protein Bar;Mmm, so good, so strong.;0.1
+Item:protein bar;Mmm, so good, so strong.;0.1
+Room Name: Gym Hallway
+Item:rowing machine;Exercising is tiring.;300

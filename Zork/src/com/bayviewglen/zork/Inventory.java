@@ -5,9 +5,11 @@ import java.util.HashMap;
 
 public class Inventory implements Serializable {
 
+	private static final double MAX_PLAYER_WEIGHT = 20;
 	private HashMap<String, Item> items;
 	private double currentWeight;
 	private double maxWeight;
+
 
 	public Inventory(double currentWeight, double maxWeight) {
 		this.items = new HashMap<String, Item>();
@@ -17,7 +19,14 @@ public class Inventory implements Serializable {
 
 	public Inventory() {
 		this.items = new HashMap<String, Item>();
-		this.maxWeight = 20; 
+		this.maxWeight = MAX_PLAYER_WEIGHT;
+	}
+
+	public Inventory(Boolean isRoom) {
+		if (isRoom)
+			this.items = new HashMap<String,Item>();
+			this.maxWeight = Double.MAX_VALUE;
+
 	}
 
 	public HashMap<String, Item> getItems() {
