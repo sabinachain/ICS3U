@@ -1,3 +1,12 @@
-Game Name: Search for the Lost Code
-Game Description: This is a text-based adventure game set in Bayview Glen's Upper School where you are required to complete an AP Computer Science Assignment but are faced with conflicts and encrypted files. You must locate the items and characters needed to successfully deliver your completed assignment to Mr. DesLauriers. 
+Game Name: The Search for the Lost Code
+User-Level Description: This is a text-based adventure game set in Bayview Glen's Upper School where you are required to complete an AP Computer Science Assignment but are faced with conflicts and encrypted files. You must locate the items and characters needed to successfully deliver your completed assignment to Mr. DesLauriers. 
+Play the game by following the instructions and typing one of the appropriate commands. Explore your surroundings and interact with different items and characters in order to complete your mission and complete the lost code. 
 
+Special features of the Game: 
+Teleporter to Random room 
+Load/Save functionality
+Loading rooms, items
+Customizable data files for rooms, items
+Parser that recognizes 4-word commands
+Player and room inventories 
+Includes many commands: "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "smash", "random", "n", "e", "s", "w", "u", "d","items", "save", "xyzzy"
