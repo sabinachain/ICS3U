@@ -385,11 +385,6 @@ class Game implements java.io.Serializable {
 		}else {
 			System.out.println("There is no room to go back to.");
 		}
-		
 	}
-	
-	
-	
-	
 	
 }

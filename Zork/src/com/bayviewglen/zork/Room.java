@@ -103,7 +103,7 @@ class Room implements Serializable
      */
     public String longDescription()
     {    	
-        return "Room: " + roomName +"\n" + description + "\n" + exitString();
+        return "Room: " + roomName +"\n" + description + "\n" + inventoryString()+ "\n" + exitString();
     }
 
     /**
@@ -118,6 +118,18 @@ class Room implements Serializable
         for(Iterator<String> iter = keys.iterator(); iter.hasNext(); )
             returnString += " " + iter.next();
         return returnString;
+    }
+    
+    /**
+     * Return a string describing the room's inventory, for example:
+     * "Room contains: piano, usb, key"
+     */
+
+    private String inventoryString() 
+    {
+        String returnString = "Room contains: ";
+		returnString += roomInventory.stringInventory();
+        return returnString; 
     }
 
     /**

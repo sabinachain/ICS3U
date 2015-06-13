@@ -96,15 +96,23 @@ public class Inventory implements Serializable {
 		for (String key : items.keySet()) {
 			System.out.println(key);
 		}
-
-		// Methods required:
-		// getItem - return Item, input string
-		// addItem - return boolean
-		// hasItem - return boolean
-		// removeItem- return Item
-		// display Inventory - return void; just displays inventory
-		// removeItem - void
-		// useItem - void
-
 	}
+	
+	public String stringInventory() {
+		String result = ""; 
+		for (String key : items.keySet()) {
+		result += " " + key; 
+		}
+		return result;
+	}
+	
+	
+	// Methods required:
+	// getItem - return Item, input string
+	// addItem - return boolean
+	// hasItem - return boolean
+	// removeItem- return Item
+	// display Inventory - return void; just displays inventory
+	// removeItem - void
+	// useItem - void
 }
