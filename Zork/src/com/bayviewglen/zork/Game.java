@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -29,6 +30,8 @@ import java.util.Scanner;
 class Game implements java.io.Serializable {
 	private Parser parser;
 	private Room currentRoom;
+	
+	private ArrayList<Room> roomHistory;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -104,9 +107,8 @@ class Game implements java.io.Serializable {
 			playerInventory = new Inventory();
 			initRooms("data/rooms.dat");
 			currentRoom = masterRoomMap.get("ROOM_106");
-			playerInventory = new Inventory();
+			roomHistory = new ArrayList<Room>();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		parser = new Parser();
@@ -156,6 +158,8 @@ class Game implements java.io.Serializable {
 			printHelp();
 		else if (commandWord.equals("go"))
 			goRoom(command);
+		else if (commandWord.equals("back"))
+			backRoom(command);
 		else if (commandWord.equals("quit")) {
 			if (command.hasSecondWord())
 				System.out.println("Quit what?");
@@ -364,9 +368,28 @@ class Game implements java.io.Serializable {
 		if (nextRoom == null)
 			System.out.println("There is no door!");
 		else {
+			roomHistory.add(currentRoom); 
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
 		}
 	}
-
+	
+	/**
+	 * Try to go back to previous room, if there is one. If there is one, go to the previous room,
+	 * otherwise print an error message. This can be done infinitely until the first room as it is an ArrayList. 
+	 */
+	private void backRoom(Command command) {
+		if(roomHistory.size()>0) {
+			currentRoom = roomHistory.remove(roomHistory.size()-1);
+			System.out.println(currentRoom.longDescription());
+		}else {
+			System.out.println("There is no room to go back to.");
+		}
+		
+	}
+	
+	
+	
+	
+	
 }

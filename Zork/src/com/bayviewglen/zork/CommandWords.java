@@ -16,7 +16,7 @@ class CommandWords implements Serializable
 {
     // a constant array that holds all valid command words
     private static final String validCommands[] = {
-        "go", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "smash", "n", "e", "s", "w", "u", "d",
+        "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "smash", "n", "e", "s", "w", "u", "d",
         "save", "xyzzy"
     };
 
