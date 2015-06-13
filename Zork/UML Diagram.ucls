@@ -75,7 +75,7 @@
   </class>  
   <package id="9" language="java" name="com.bayviewglen.zork" project="Zork" file="/Zork/src/com/bayviewglen/zork" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="50" width="732" x="435" y="27"/>    
+    <position height="50" width="843" x="435" y="27"/>    
     <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
   <class id="10" language="java" name="com.bayviewglen.zork.Character" project="Zork" 
