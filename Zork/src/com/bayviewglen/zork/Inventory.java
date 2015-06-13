@@ -17,12 +17,7 @@ public class Inventory implements Serializable {
 
 	public Inventory() {
 		this.items = new HashMap<String, Item>();
-	}
-
-	public Inventory(Boolean isRoom) {
-		if (isRoom)
-			this.maxWeight = Double.MAX_VALUE;
-
+		this.maxWeight = 20; 
 	}
 
 	public HashMap<String, Item> getItems() {
@@ -54,7 +49,7 @@ public class Inventory implements Serializable {
 			items.put(i.getName(), i);
 			return true;
 		} else {
-			System.out.println("Ow! This is way too heavy to pick up.");
+			System.out.println("Ow! Altogether, your inventory would be too heavy to pick this up.");
 			return false;
 		}
 	}

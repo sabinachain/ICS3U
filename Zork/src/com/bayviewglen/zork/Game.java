@@ -30,7 +30,7 @@ import java.util.Scanner;
 class Game implements java.io.Serializable {
 	private Parser parser;
 	private Room currentRoom;
-	
+
 	private ArrayList<Room> roomHistory;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
@@ -73,7 +73,6 @@ class Game implements java.io.Serializable {
 				// masterMap)
 				masterRoomMap.put(roomName.toUpperCase().substring(10).trim()
 						.replaceAll(" ", "_"), room);
-
 				// Now we better set the exits.
 			}
 
@@ -99,6 +98,36 @@ class Game implements java.io.Serializable {
 		}
 	}
 
+	private void initItems(String fileName) throws Exception {
+		Scanner itemScanner;
+		try {
+			itemScanner = new Scanner(new File(fileName));
+			while (itemScanner.hasNext()) {
+				// Room: bla bla bla
+				String roomLine = itemScanner.nextLine();
+				String fullRoomName = roomLine.split(":")[1].trim();
+				String keyRoom = fullRoomName.toUpperCase().replaceAll(" ", "_");
+
+				// Item: USB; using USB;0.001
+				String itemList = itemScanner.nextLine();
+				String[] itemV = itemList.split(":")[1].split(";");
+				Item myItem = new Item(itemV[0], itemV[1],
+						Double.parseDouble(itemV[2]));
+
+				Room myRoom = masterRoomMap.get(keyRoom);
+				if (myRoom != null) {
+					myRoom.getRoomInventory().addItem(myItem);
+				} else {
+					// no room with this name
+				}
+			}
+
+			itemScanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Create the game and initialize its internal map.
 	 */
@@ -106,6 +135,7 @@ class Game implements java.io.Serializable {
 		try {
 			playerInventory = new Inventory();
 			initRooms("data/rooms.dat");
+			initItems("data/items.dat");
 			currentRoom = masterRoomMap.get("ROOM_106");
 			roomHistory = new ArrayList<Room>();
 		} catch (Exception e) {
@@ -208,8 +238,10 @@ class Game implements java.io.Serializable {
 			} catch (Exception ex) {
 
 			}
-			
-		//Load cannot be done with Serialize here but it is done in main in the Zork class. The main automatically loads the saved file from the beginning.
+
+			// Load cannot be done with Serialize here but it is done in main in
+			// the Zork class. The main automatically loads the saved file from
+			// the beginning.
 
 		} else if (commandWord.equals("xyzzy")) {
 			System.out.println("What game do you think this is?"); // Placeholder
@@ -370,23 +402,24 @@ class Game implements java.io.Serializable {
 		if (nextRoom == null)
 			System.out.println("There is no door!");
 		else {
-			roomHistory.add(currentRoom); 
+			roomHistory.add(currentRoom);
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
 		}
 	}
-	
+
 	/**
-	 * Try to go back to previous room, if there is one. If there is one, go to the previous room,
-	 * otherwise print an error message. This can be done infinitely until the first room as it is an ArrayList. 
+	 * Try to go back to previous room, if there is one. If there is one, go to
+	 * the previous room, otherwise print an error message. This can be done
+	 * infinitely until the first room as it is an ArrayList.
 	 */
 	private void backRoom(Command command) {
-		if(roomHistory.size()>0) {
-			currentRoom = roomHistory.remove(roomHistory.size()-1);
+		if (roomHistory.size() > 0) {
+			currentRoom = roomHistory.remove(roomHistory.size() - 1);
 			System.out.println(currentRoom.longDescription());
-		}else {
+		} else {
 			System.out.println("There is no room to go back to.");
 		}
 	}
-	
+
 }
