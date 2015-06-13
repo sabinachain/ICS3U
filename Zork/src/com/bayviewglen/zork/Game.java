@@ -192,6 +192,8 @@ class Game implements java.io.Serializable {
 			printHelp();
 		else if (commandWord.equals("go"))
 			goRoom(command);
+		else if(commandWord.equals("random"))
+			randomRoom(command);
 		else if (commandWord.equals("back"))
 			backRoom(command);
 		else if (commandWord.equals("quit")) {
@@ -314,8 +316,8 @@ class Game implements java.io.Serializable {
 	}
 
 	private void giveItem(Command command) {
-		//gives item to non-player character
-		//not called anywhere as characters not yet implemented
+		// gives item to non-player character
+		// not called anywhere as characters not yet implemented
 		if (!command.hasSecondWord()) // if it lacks a second word
 			System.out.println("give what?"); // Placeholder
 		else if (playerInventory.hasItem(command.getSecondWord())) {
@@ -373,9 +375,9 @@ class Game implements java.io.Serializable {
 				currentRoom.getRoomCharacter().getName())) {
 			System.out.println("That character is not in the room.");
 		}
-	} 
+	}
 
-	//Prints the help text.
+	// Prints the help text.
 	private void printHelp() {
 		System.out.println("You are lost. You are alone. You wander");
 		System.out.println("around at Bayview Glen, Moatfield Campus.");
@@ -407,6 +409,23 @@ class Game implements java.io.Serializable {
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
 		}
+	}
+
+	// Magically teleports you to a random room when you type command 'random'.
+	private void randomRoom(Command command) {
+		int rand = (int) (Math.random() * masterRoomMap.keySet().size());
+		int count = 0;
+		Room nextRoom = null;
+		for (String key : masterRoomMap.keySet()) {
+			if (count == rand) {
+				nextRoom = masterRoomMap.get(key);
+				break;
+			}
+			count++;
+		}
+		roomHistory.add(currentRoom);
+		currentRoom = nextRoom;
+		System.out.println(currentRoom.longDescription());
 	}
 
 	/**
