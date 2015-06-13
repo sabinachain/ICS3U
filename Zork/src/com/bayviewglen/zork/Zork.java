@@ -19,6 +19,6 @@ public class Zork implements Serializable {
 		} catch (Exception ex) {
 			game = new Game();
 		}
-
+		game.play();
 	}
 }
