@@ -45,7 +45,8 @@ class Room implements Serializable
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
     	roomInventory = new Inventory();
-    	roomInventory = new Inventory();
+
+
     	roomCharacter = null; //Don't construct characters that don't exist
 	}
 

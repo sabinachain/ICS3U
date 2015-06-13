@@ -80,6 +80,11 @@ public class Inventory implements Serializable {
 		return items.remove(key);
 	}
 
+	public Item useItem(String key) {
+		// i.use();
+		return items.get(key);
+	}
+
 	public void displayInventory() {
 		for (String key : items.keySet()) {
 			System.out.println(key);
@@ -91,6 +96,8 @@ public class Inventory implements Serializable {
 		// hasItem - return boolean
 		// removeItem- return Item
 		// display Inventory - return void; just displays inventory
+		// removeItem - void
+		// useItem - void
 
 	}
 }
