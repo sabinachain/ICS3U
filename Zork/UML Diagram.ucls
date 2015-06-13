@@ -3,7 +3,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="com.bayviewglen.zork.Weapon" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Weapon.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="164" x="455" y="1903"/>    
+    <position height="207" width="164" x="911" y="2013"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.bayviewglen.zork.Command" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Command.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="202" x="159" y="28"/>    
+    <position height="297" width="202" x="436" y="120"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.bayviewglen.zork.Room" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Room.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="405" width="272" x="262" y="383"/>    
+    <position height="405" width="272" x="718" y="493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.bayviewglen.zork.Inventory" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Inventory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="405" width="204" x="455" y="1139"/>    
+    <position height="405" width="204" x="911" y="1249"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.bayviewglen.zork.Item" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Item.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="147" x="455" y="1584"/>    
+    <position height="279" width="147" x="911" y="1694"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.bayviewglen.zork.Zork" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Zork.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="113" x="401" y="28"/>    
+    <position height="117" width="157" x="678" y="120"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.bayviewglen.zork.Game" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Game.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="315" width="209" x="554" y="28"/>    
+    <position height="333" width="209" x="875" y="120"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,124 +66,129 @@
   </class>  
   <class id="8" language="java" name="com.bayviewglen.zork.Parser" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Parser.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="146" x="605" y="383"/>    
+    <position height="117" width="146" x="1061" y="493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.bayviewglen.zork.Character" project="Zork" 
+  <package id="9" language="java" name="com.bayviewglen.zork" project="Zork" file="/Zork/src/com/bayviewglen/zork" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="732" x="435" y="27"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="10" language="java" name="com.bayviewglen.zork.Character" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="172" x="262" y="838"/>    
+    <position height="261" width="172" x="718" y="948"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="com.bayviewglen.zork.CommandWords" project="Zork" 
+  <class id="11" language="java" name="com.bayviewglen.zork.CommandWords" project="Zork" 
     file="/Zork/src/com/bayviewglen/zork/CommandWords.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="158" x="605" y="838"/>    
+    <position height="135" width="158" x="1061" y="948"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="11">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="exits"/>      
-      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
+  <association id="12">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="13" name="roomHistory"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="14">    
-    <bendpoint x="574" y="383"/>    
-    <bendpoint x="574" y="838"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="15" name="playerInventory"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+  <association id="15">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="16" name="inventory"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="18" name="items"/>      
-      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <bendpoint x="464" y="838"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="21" name="roomInventory"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
+  <association id="18">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="24" name="parser"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+      <attribute id="19" name="currentRoom"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="23" name="commands"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="26" name="parser"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="27" name="roomHistory"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="30" name="masterRoomMap"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="33">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="34" name="currentRoom"/>      
-      <multiplicity id="35" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="36">    
+  <association id="28">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="37" name="roomCharacter"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="29" name="exits"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="40" name="inventory"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+  <association id="31">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="32" name="roomCharacter"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="35" name="items"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <bendpoint x="920" y="948"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="38" name="roomInventory"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="43" name="commands"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
+  <association id="40">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="41" name="masterRoomMap"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <bendpoint x="1030" y="493"/>    
+    <bendpoint x="1030" y="948"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="44" name="playerInventory"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
