@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 	private String name;
 	private double weight;
 	
@@ -8,6 +10,12 @@ public class Item {
 		super();
 		this.name = name;
 		this.weight = weight;
+	}
+	
+	public Item() {
+		super();
+		this.name = "";
+		this.weight = 0;
 	}
 	
 	public String getName() {
@@ -21,6 +29,10 @@ public class Item {
 	}
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+	public void use() {
+		//Does nothing, the Item class is a base for things, not a thing itself
+		//But for actual items the use command uses this function
 	}
 	
 }

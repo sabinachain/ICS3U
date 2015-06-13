@@ -1,21 +1,21 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Inventory {
+public class Inventory implements Serializable {
+
 	private HashMap<String, Item> items;
 	private double currentWeight;
 	private double maxWeight;
 
 	public Inventory(double currentWeight, double maxWeight) {
-		super();
 		this.items = new HashMap<String, Item>();
 		this.currentWeight = currentWeight;
 		this.maxWeight = maxWeight;
 	}
 
 	public Inventory() {
-		super();
 		this.items = new HashMap<String, Item>();
 	}
 
@@ -67,17 +67,30 @@ public class Inventory {
 		}
 	}
 
+	public Item getItem(String i) {
+		if (items.containsKey(i)) {
+			return items.get(i);
+		} else {
+			System.out.println("You do not have a " + i + ".");
+			return null;
+		}
+	}
+
 	public Item removeItem(String key) {
 		return items.remove(key);
 	}
-	
-	
 
-	// addItem - return boolean
-	// hasItem - return boolean
-	// dropItem- return Item
-	// display Inventory - return String
+	public void displayInventory() {
+		for (String key : items.keySet()) {
+			System.out.println(key);
+		}
 
-	//
+		// Methods required:
+		// getItem - return Item, input string
+		// addItem - return boolean
+		// hasItem - return boolean
+		// removeItem- return Item
+		// display Inventory - return void; just displays inventory
 
+	}
 }

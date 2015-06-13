@@ -14,16 +14,18 @@ package com.bayviewglen.zork;
  * to the neighbouring room, or null if there is no exit in that direction.
  */
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
-class Room 
+class Room implements Serializable
 {
 	private String roomName;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Inventory roomInventory;
+    private Character roomCharacter;
     
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -33,7 +35,8 @@ class Room
     {
         this.description = description;
         this.setRoomInventory(new Inventory());
-        exits = new HashMap<String, Room>();
+        this.setRoomCharacter(new Character());
+    	exits = new HashMap<String, Room>();
     }
 
     public Room() {
@@ -41,6 +44,9 @@ class Room
     	roomName = "DEFAULT ROOM";
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
+    	roomInventory = new Inventory();
+    	roomInventory = new Inventory();
+    	roomCharacter = null; //Don't construct characters that don't exist
 	}
 
     public void setExit(char direction, Room r) throws Exception{
@@ -144,5 +150,13 @@ class Room
 
 	public void setRoomInventory(Inventory roomInventory) {
 		this.roomInventory = roomInventory;
+	}
+	
+	public Character getRoomCharacter() {
+		return roomCharacter;
+	}
+	
+	public void setRoomCharacter(Character roomCharacter) {
+		this.roomCharacter = roomCharacter;
 	}
 }

@@ -2,6 +2,8 @@ package com.bayviewglen.zork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -24,9 +26,9 @@ import java.util.Scanner;
  *  commands that the parser returns.
  */
 
-class Game 
+class Game implements java.io.Serializable
 {
-    private Parser parser;
+	private Parser parser;
     private Room currentRoom;
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
@@ -168,46 +170,19 @@ class Game
         	System.out.println("Do you really think you should be eating at a time like this?");
         }
         else if (commandWord.equals("use")){
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("use what?"); //Placeholder
-            else if (playerInventory.hasItem(command.getSecondWord())){
-                //Code to make item use
-            } else {
-            System.out.println("You don't have that item!");
-            }
+            useItem(command);
+        }
+        else if (commandWord.equals("drop")){
+        	dropItem(command);
         }
         else if (commandWord.equals("take")){
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("take what?"); //Placeholder
-            else if (currentRoom.getRoomInventory().hasItem(command.getSecondWord())) {
-                //code to take items
-            	} else {
-            	System.out.println("This room doesn't have that item!");
-            	}
+        	takeItem(command);
         }
-        else if (commandWord.equals("give")){	
-            if(!command.hasSecondWord()) //if it lacks a second word
-            System.out.println("give what?"); //Placeholder
-            else if (playerInventory.hasItem(command.getSecondWord())) {
-            	if(!command.hasThirdWord())
-            	System.out.println("give " + command.getSecondWord() + " what?");
-            	else if(command.getThirdWord().equals("to")) {
-            		if(command.hasFourthWord()){
-            			//Code for item giving not implemented yet
-            		}
-            	}
-            	else
-            	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord());
-            } else {
-            System.out.println("You don't have that item!");
-            }
+        else if (commandWord.equals("give")){
+            giveItem(command);
         }
         else if (commandWord.equals("hit")){
-            //if(!command.hasSecondWord()) //if it lacks a second word       	
-            System.out.println("hit what?"); //Placeholder	
-            //check if third or fourth word missing
-            //System.out.println("hit that with what?");
-            //code to hit stuffs
+            hitThing(command);
         }
         else if (commandWord.equals("smash")){
             System.out.println("smash what?"); //Placeholder     	
@@ -230,15 +205,149 @@ class Game
         else if (commandWord.equals("d")){
         	processCommand(new Command("go","down", "", ""));
         }
-        else if (command.equals("drop")){
-        	dropItem(command);
+        else if (commandWord.equals("save")){
+        	// Write to disk with FileOutputStream
+        	try{
+        	FileOutputStream f_out = new 
+        		FileOutputStream("savegame1.data");
+
+        	// Write object with ObjectOutputStream
+        	ObjectOutputStream obj_out = new
+        		ObjectOutputStream (f_out);
+
+			// Write object out to disk
+        	obj_out.writeObject ( this );
+        	obj_out.close();
+        	}catch(Exception ex){
+        		
+        	}
+        }
+        /*
+        else if (commandWord.equals("load")){
+        	// Read from disk using FileInputStream
+        	try{
+        	FileInputStream f_in = new 
+        		FileInputStream("savegame.data");
+
+        	// Read object using ObjectInputStream
+        	ObjectInputStream obj_in = 
+        		new ObjectInputStream (f_in);
+
+        	// Read an object
+        	Object obj = obj_in.readObject();
+        	} catch (Exception ex) {
+        	} 
+        } */
+        else if (commandWord.equals("xyzzy")){
+            System.out.println("What game do you think this is?"); //Placeholder     	
         }
         return false;
     }
 
-    // implementations of user commands:
+	// implementations of user commands:
+    
+	private void useItem(Command command) {
+    	String itemToUse = command.getSecondWord();
+		// Add this item to the roomInventory
 
-    /**
+		if (itemToUse == null) {
+			System.out.println("Use What?");
+		} else {
+			Item myItem = playerInventory.getItem(itemToUse);
+			if (myItem == null) {
+				System.out.println("You don't have a " + itemToUse + " to use!");
+			} else {
+				myItem.use();
+				System.out.println("You have used the " + itemToUse + ".");
+			}
+		}
+		
+	}
+    
+    private void takeItem(Command command) {
+    	String itemToTake = command.getSecondWord();
+		// Add this item to the playerInventory
+
+		if (itemToTake == null) {
+			System.out.println("Take What?");
+		} else {
+			Item i = currentRoom.getRoomInventory().removeItem(itemToTake);
+			if (i == null) { 
+				System.out.println("The room doesn't have a " + command.getSecondWord() + " to take!");
+			} else {//x
+				playerInventory.addItem(i);
+				System.out.println("You have taken the " + itemToTake + ".");
+			}
+		}
+	}
+
+	private void dropItem(Command command) {
+    	String itemToDrop = command.getSecondWord();
+		// Add this item to the roomInventory
+
+		if (itemToDrop == null) {
+			System.out.println("Drop What?");
+		} else {
+			Item i = playerInventory.removeItem(itemToDrop);
+			if (i == null) {
+				System.out.println("You don't have a " + itemToDrop + " to drop!");
+			} else {
+				currentRoom.getRoomInventory().addItem(i);
+				System.out.println("You have dropped the " + itemToDrop + ".");
+			}
+		}
+		
+	}
+    
+	private void giveItem (Command command) {
+        if(!command.hasSecondWord()) //if it lacks a second word
+        System.out.println("give what?"); //Placeholder
+        else if (playerInventory.hasItem(command.getSecondWord())) {
+        	if(!command.hasThirdWord())
+        	{
+        		System.out.println("give " + command.getSecondWord() + " what?"); 
+        	}
+        	else if(command.getThirdWord().equals("to")) { //Only possible word right now
+        		if(command.hasFourthWord()){
+        			if(command.getFourthWord().equals(currentRoom.getRoomCharacter().getName())); {
+        				Item i = playerInventory.removeItem(command.getSecondWord()); //Removes item from player
+        				currentRoom.getRoomCharacter().getInventory().addItem(i); //Gives it to non-player character
+        			}
+        			} else {
+        				System.out.println("That character is not in this room!");
+        			}
+        		}
+        	else
+        	System.out.println("give " + command.getSecondWord() + " " + command.getThirdWord() + " what?");
+        } else {
+        System.out.println("You don't have that item!");
+        }
+	}
+	
+    private void hitThing(Command command) {
+        if(!command.hasSecondWord()) //if it lacks a second word
+        System.out.println("hit what?"); //Placeholder
+        if (command.getSecondWord().equals(currentRoom.getRoomCharacter().getName())); {
+        	if(!command.hasThirdWord())
+        	{
+        		System.out.println("hit " + command.getSecondWord() + " what?"); 
+        	}
+        	else if(command.getThirdWord().equals("with")) { //Only possible word right now
+        		if(command.hasFourthWord()) {
+        	        if (playerInventory.hasItem(command.getFourthWord())) {
+        	        	
+        			}
+        			} else {
+        				System.out.println("You don't have that weapon!");
+        			}
+        	}
+        	else
+        	System.out.println("hit " + command.getSecondWord() + " " + command.getThirdWord() + " what?");
+        } if(!command.getSecondWord().equals(currentRoom.getRoomCharacter().getName())) { System.out.println("That character is not in the room."); }
+	} //Technically not supposed to do that, but eclipse disallowed an "else" there.
+      //Don't worry, that "if" and the other big "if" can't both be executed at once.
+	
+	/**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
@@ -278,23 +387,5 @@ class Game
             System.out.println(currentRoom.longDescription());
         }
     }
-    
-    private void dropItem(Command command) {
-    	String itemToDrop = command.getSecondWord();
-		// Add this item to the roomInventory
-
-		if (itemToDrop == null) {
-			System.out.println("Drop What??");
-		}else {
-			Item i = playerInventory.removeItem(itemToDrop);
-			if (i == null) {
-				System.out.println("Are you sure you have a " + itemToDrop);
-			}else {
-				currentRoom.getRoomInventory().addItem(i);
-				System.out.println("You have dropped the " + itemToDrop + ".");
-			}
-		}
-		
-	}
-  
-}
+   
+} 
