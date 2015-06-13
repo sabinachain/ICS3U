@@ -1,9 +1,11 @@
 package com.bayviewglen.zork;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -200,19 +202,19 @@ class Game implements java.io.Serializable {
 			} catch (Exception ex) {
 
 			}
-		}
-		/*
-		 * else if (commandWord.equals("load")){ // Read from disk using
-		 * FileInputStream try{ FileInputStream f_in = new
-		 * FileInputStream("savegame.data");
-		 * 
-		 * // Read object using ObjectInputStream ObjectInputStream obj_in = new
-		 * ObjectInputStream (f_in);
-		 * 
-		 * // Read an object Object obj = obj_in.readObject(); } catch
-		 * (Exception ex) { } }
-		 */
-		else if (commandWord.equals("xyzzy")) {
+			//WILL BE FINALIZED TOMORROW - - - - - - - - - - - - - - - -
+		} else if (commandWord.equals("load")) { // Read from disk using
+			try {
+				// Read object using ObjectInputStream ObjectInputStream obj_in
+				// = new
+				ObjectInputStream f_in1 = new ObjectInputStream(
+						new FileInputStream("savegame1.data"));
+
+				// Read an object Object obj = obj_in.readObject();
+			} catch (Exception ex) {
+			}
+
+		} else if (commandWord.equals("xyzzy")) {
 			System.out.println("What game do you think this is?"); // Placeholder
 		}
 		return false;
