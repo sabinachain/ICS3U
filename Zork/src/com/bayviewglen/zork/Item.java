@@ -18,7 +18,7 @@ public class Item implements Serializable {
 		this.usage = "";
 		this.weight = 0;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
