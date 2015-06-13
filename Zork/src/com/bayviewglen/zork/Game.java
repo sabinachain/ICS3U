@@ -170,6 +170,8 @@ class Game implements java.io.Serializable {
 					.println("Do you really think you should be eating at a time like this?");
 		} else if (commandWord.equals("use")) {
 			useItem(command);
+		} else if (commandWord.equals("items")) {
+			playerInventory.displayInventory();
 		} else if (commandWord.equals("drop")) {
 			dropItem(command);
 		} else if (commandWord.equals("take")) {

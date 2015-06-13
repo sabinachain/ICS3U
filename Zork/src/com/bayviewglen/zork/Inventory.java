@@ -87,26 +87,29 @@ public class Inventory implements Serializable {
 	public void useItem(String key) {
 		if (items.containsKey(key)) {
 			items.get(key).use();
-		}else {
+		} else {
 			System.out.println("You do not have a " + key + ".");
 		}
 	}
 
 	public void displayInventory() {
-		for (String key : items.keySet()) {
-			System.out.println(key);
+		if (items.size() == 0) {
+			System.out.println("Empty inventory.");
+		} else {
+			for (String key : items.keySet()) {
+				System.out.println(key);
+			}
 		}
 	}
-	
+
 	public String stringInventory() {
-		String result = ""; 
+		String result = "";
 		for (String key : items.keySet()) {
-		result += " " + key; 
+			result += " " + key;
 		}
 		return result;
 	}
-	
-	
+
 	// Methods required:
 	// getItem - return Item, input string
 	// addItem - return boolean
