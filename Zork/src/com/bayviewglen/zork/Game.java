@@ -1,11 +1,9 @@
 package com.bayviewglen.zork;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -13,8 +11,9 @@ import java.util.Scanner;
 /**
  * Class Game - the main class of the "Zork" game.
  *
- * Original Author: Michael Kolling Version: 1.1 Date: March 2000
- * Additions made by Sabina Beleuz Neagu (Game, Inventory, and Item Levels), by Ross West (Parser, Command, CommandWords) and Zane Feder (Characters) 
+ * Original Author: Michael Kolling Version: 1.1 Date: March 2000 Additions made
+ * by Sabina Beleuz Neagu (Game, Inventory, and Item Levels), by Ross West
+ * (Parser, Command, Rooms) and Zane Feder (Characters)
  * 
  * This class is the main class of the "Zork" application. Zork is a very
  * simple, text based adventure game. Users can walk around some scenery. That's
@@ -32,17 +31,17 @@ class Game implements java.io.Serializable {
 	private Parser parser;
 	private Room currentRoom;
 
-	private ArrayList<Room> roomHistory;
-	// This is a MASTER object that contains all of the rooms and is easily
-	// accessible.
-	// The key will be the name of the room -> no spaces (Use all caps and
-	// underscore -> Great Room would have a key of GREAT_ROOM
-	// In a hashmap keys are case sensitive.
-	// masterRoomMap.get("GREAT_ROOM") will return the Room Object that is the
-	// Great Room (assuming you have one).
-	private HashMap<String, Room> masterRoomMap;
-	private Inventory playerInventory;
-	final static String SAVED_GAME_FILE = "savegame.data"; 
+	private ArrayList<Room> roomHistory; // Use to keep track of the previous
+											// rooms so you can use the 'back'
+											// command.
+	private HashMap<String, Room> masterRoomMap; // Keeps track of all available
+													// rooms.
+	private Inventory playerInventory; // The player's items - initally empty by
+										// default.
+	final static String SAVED_GAME_FILE = "savegame.data"; // File will be used
+															// on 'save'command.
+
+	// load available rooms from the rooms.dat data file
 	private void initRooms(String fileName) throws Exception {
 		masterRoomMap = new HashMap<String, Room>();
 		Scanner roomScanner;
@@ -99,18 +98,19 @@ class Game implements java.io.Serializable {
 		}
 	}
 
+	// Loads available items from the items.dat data file.
 	private void initItems(String fileName) throws Exception {
 		Scanner itemScanner;
 		try {
 			itemScanner = new Scanner(new File(fileName));
 			while (itemScanner.hasNext()) {
-				// Room: bla bla bla
+				// Room: Room 106
 				String roomLine = itemScanner.nextLine();
 				String fullRoomName = roomLine.split(":")[1].trim();
 				String keyRoom = fullRoomName.toUpperCase()
 						.replaceAll(" ", "_");
 
-				// Item: USB; using USB;0.001
+				// (example) Item: USB; using USB;0.001
 				String itemList = itemScanner.nextLine();
 				String[] itemV = itemList.split(":")[1].split(";");
 				Item myItem = new Item(itemV[0], itemV[1],
@@ -131,7 +131,8 @@ class Game implements java.io.Serializable {
 	}
 
 	/**
-	 * Create the game and initialize its internal map.
+	 * Create the game and initialize its internal map, room history, player
+	 * inventory, parser, etc. This is the game constructor.
 	 */
 	public Game() {
 		try {
@@ -169,7 +170,8 @@ class Game implements java.io.Serializable {
 	private void printWelcome() {
 		System.out.println();
 		System.out.println("Welcome to Zork: The Search for the Lost Code.");
-		System.out.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
+		System.out
+				.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -227,7 +229,7 @@ class Game implements java.io.Serializable {
 		} else if (commandWord.equals("d")) {
 			processCommand(new Command("go", "down", "", ""));
 		} else if (commandWord.equals("save")) {
-			// Write to disk with FileOutputStream
+			// Write to savegame.data with FileOutputStream
 			try {
 				FileOutputStream f_out = new FileOutputStream(SAVED_GAME_FILE);
 
@@ -239,11 +241,7 @@ class Game implements java.io.Serializable {
 				obj_out.close();
 			} catch (Exception ex) {
 
-			}
-
-			// Load cannot be done with Serialize here but it is done in main in
-			// the Zork class. The main automatically loads the saved file from
-			// the beginning.
+			} // Load for serialize is done in the main.
 
 		} else if (commandWord.equals("xyzzy")) {
 			System.out.println("What game do you think this is?"); // Placeholder
@@ -282,13 +280,15 @@ class Game implements java.io.Serializable {
 			Item i = currentRoom.getRoomInventory().removeItem(itemToTake);
 
 			if (i == null) {
-				System.out.println("The room doesn't have a " + command.getSecondWord() + " to take!");
+				System.out.println("The room doesn't have a "
+						+ command.getSecondWord() + " to take!");
 			} else {
 				if (playerInventory.addItem(i)) {
 					System.out
 							.println("You have taken the " + itemToTake + ".");
 				} else {
-					System.out.println("You cannot take the " + itemToTake + ".");
+					System.out.println("You cannot take the " + itemToTake
+							+ ".");
 				}
 			}
 		}
@@ -314,6 +314,8 @@ class Game implements java.io.Serializable {
 	}
 
 	private void giveItem(Command command) {
+		//gives item to non-player character
+		//not called anywhere as characters not yet implemented
 		if (!command.hasSecondWord()) // if it lacks a second word
 			System.out.println("give what?"); // Placeholder
 		else if (playerInventory.hasItem(command.getSecondWord())) {
@@ -371,15 +373,9 @@ class Game implements java.io.Serializable {
 				currentRoom.getRoomCharacter().getName())) {
 			System.out.println("That character is not in the room.");
 		}
-	} // Technically not supposed to do that, but eclipse disallowed an "else"
-		// there.
-		// Don't worry, that "if" and the other big "if" can't both be executed
-		// at once.
+	} 
 
-	/**
-	 * Print out some help information. Here we print some stupid, cryptic
-	 * message and a list of the command words.
-	 */
+	//Prints the help text.
 	private void printHelp() {
 		System.out.println("You are lost. You are alone. You wander");
 		System.out.println("around at Bayview Glen, Moatfield Campus.");
