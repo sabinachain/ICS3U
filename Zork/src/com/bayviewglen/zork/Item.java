@@ -44,8 +44,7 @@ public class Item implements Serializable {
 	}
 
 	public void use() {
-		// Does nothing, the Item class is a base for things, not a thing itself
-		// But for actual items the use command uses this function
+		System.out.println(usage);
 	}
 
 }
