@@ -233,7 +233,7 @@ class Game implements java.io.Serializable {
 
 				// Write object with ObjectOutputStream
 				ObjectOutputStream obj_out = new ObjectOutputStream(f_out);
-
+				System.out.println("Game saved to file: " + SAVED_GAME_FILE);
 				// Write object out to disk
 				obj_out.writeObject(this);
 				obj_out.close();
