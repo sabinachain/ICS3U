@@ -59,30 +59,37 @@ public class Inventory implements Serializable {
 		}
 	}
 
-	public boolean hasItem(String i) {
-		if (items.containsKey(i)) {
+	public boolean hasItem(String key) {
+		if (items.containsKey(key)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public Item getItem(String i) {
-		if (items.containsKey(i)) {
-			return items.get(i);
+	public Item getItem(String key) {
+		if (items.containsKey(key)) {
+			return items.get(key);
 		} else {
-			System.out.println("You do not have a " + i + ".");
+			System.out.println("You do not have a " + key + ".");
 			return null;
 		}
 	}
 
 	public Item removeItem(String key) {
-		return items.remove(key);
+		Item myItem = items.remove(key);
+		if (myItem != null) {
+			currentWeight -= myItem.getWeight();
+		}
+		return myItem;
 	}
 
-	public Item useItem(String key) {
-		// i.use();
-		return items.get(key);
+	public void useItem(String key) {
+		if (items.containsKey(key)) {
+			items.get(key).use();
+		}else {
+			System.out.println("You do not have a " + key + ".");
+		}
 	}
 
 	public void displayInventory() {
