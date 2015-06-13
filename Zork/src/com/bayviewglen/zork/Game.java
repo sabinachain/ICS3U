@@ -202,17 +202,8 @@ class Game implements java.io.Serializable {
 			} catch (Exception ex) {
 
 			}
-			//WILL BE FINALIZED TOMORROW - - - - - - - - - - - - - - - -
-		} else if (commandWord.equals("load")) { // Read from disk using
-			try {
-				// Read object using ObjectInputStream ObjectInputStream obj_in
-				// = new
-				ObjectInputStream f_in1 = new ObjectInputStream(
-						new FileInputStream("savegame1.data"));
-
-				// Read an object Object obj = obj_in.readObject();
-			} catch (Exception ex) {
-			}
+			
+		//Load cannot be done with Serialize here but it is done in main in the Zork class. The main automatically loads the saved file from the beginning.
 
 		} else if (commandWord.equals("xyzzy")) {
 			System.out.println("What game do you think this is?"); // Placeholder

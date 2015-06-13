@@ -14,7 +14,7 @@ public class Zork implements Serializable {
 			// Read object using ObjectInputStream
 			ObjectInputStream obj_in = new ObjectInputStream(f_in);
 
-			// Read an object
+			// Read the game file if it is already saved. 
 			game = (Game) obj_in.readObject();
 		} catch (Exception ex) {
 			game = new Game();
