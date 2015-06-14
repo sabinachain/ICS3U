@@ -10,7 +10,7 @@ Loading rooms, items
 Customizable data files for rooms, items
 Parser that recognizes 4-word commands
 Player and room inventories 
-Includes many commands: "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "smash", "random", "n", "e", "s", "w", "u", "d","items", "save", "xyzzy"
+Includes many commands: "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "random", "n", "e", "s", "w", "u", "d","items", "save", "xyzzy"
 
 Implementation Description:
 To implement the functions to load and save, all of the functions are implementing the "Serializable" interface.

@@ -216,8 +216,6 @@ class Game implements java.io.Serializable {
 			giveItem(command);
 		} else if (commandWord.equals("hit")) {
 			hitThing(command);
-		} else if (commandWord.equals("smash")) {
-			System.out.println("smash what?"); // Placeholder
 		} else if (commandWord.equals("n")) {
 			processCommand(new Command("go", "north", "", ""));
 		} else if (commandWord.equals("e")) {
