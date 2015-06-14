@@ -5,7 +5,7 @@ Item:note;It's a note from Mr. DesLauriers. It says that your CompSci Project is
 Room Name: Room 106
 Item:laptop;You try to send an email to Mr. DesLauriers, but the wifi is down.;2
 Room Name: IT Office 
-Item:wifi router;Reconnect it to turn on WIFI and get internet access.;0
+Item:wifi-router;Reconnect it to turn on WIFI and get internet access.;0
 Room Name: Gym Hallway
 Item:protein-bar;Mmm, so good, so strong.;0.1
 Room Name: Gym Hallway

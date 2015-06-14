@@ -36,7 +36,7 @@ class Game implements java.io.Serializable {
 											// command.
 	private HashMap<String, Room> masterRoomMap; // Keeps track of all available
 													// rooms.
-	private Inventory playerInventory; // The player's items - initally empty by
+	private Inventory playerInventory; // The player's items - initially empty by
 										// default.
 	final static String SAVED_GAME_FILE = "savegame.data"; // File will be used
 															// on 'save'command.
@@ -130,6 +130,37 @@ class Game implements java.io.Serializable {
 		}
 	}
 
+	// Loads available characters from characters.dat file
+	private void initCharacters(String fileName) throws Exception {
+		Scanner characterScanner;
+		try {
+			characterScanner = new Scanner(new File(fileName));
+			while (characterScanner.hasNext()) {
+				// Room: Room 106
+				String roomLine = characterScanner.nextLine();
+				String fullRoomName = roomLine.split(":")[1].trim();
+				String keyRoom = fullRoomName.toUpperCase()
+						.replaceAll(" ", "_");
+
+				// (example) Character: Saba; "Talk string"
+				String characterList = characterScanner.nextLine();
+				String[] characterV = characterList.split(":")[1].split(";");
+				Character myCharacter = new Character(characterV[0], characterV[1], null);
+
+				Room myRoom = masterRoomMap.get(keyRoom);
+				if (myRoom != null) {
+					myRoom.setRoomCharacter(myCharacter);
+				} else {
+					// no room with this name
+				}
+			}
+
+			characterScanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Create the game and initialize its internal map, room history, player
 	 * inventory, parser, etc. This is the game constructor.
@@ -139,6 +170,7 @@ class Game implements java.io.Serializable {
 			playerInventory = new Inventory();
 			initRooms("data/rooms.dat");
 			initItems("data/items.dat");
+			initCharacters("data/characters.dat");
 			currentRoom = masterRoomMap.get("ROOM_106");
 			roomHistory = new ArrayList<Room>();
 		} catch (Exception e) {
@@ -170,8 +202,7 @@ class Game implements java.io.Serializable {
 	private void printWelcome() {
 		System.out.println();
 		System.out.println("Welcome to Zork: The Search for the Lost Code.");
-		System.out
-				.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
+		System.out.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -202,10 +233,11 @@ class Game implements java.io.Serializable {
 			else
 				return true; // signal that we want to quit
 		} else if (commandWord.equals("eat")) {
-			System.out
-					.println("Do you really think you should be eating at a time like this?");
+			System.out.println("Do you really think you should be eating at a time like this?");
 		} else if (commandWord.equals("use")) {
 			useItem(command);
+		} else if (commandWord.equals("talk")) {
+			talk(command);			
 		} else if (commandWord.equals("items")) {
 			playerInventory.displayInventory();
 		} else if (commandWord.equals("drop")) {
@@ -251,6 +283,20 @@ class Game implements java.io.Serializable {
 
 	// implementations of user commands:
 
+	private void talk(Command command) {
+		
+	if(!command.getSecondWord().equals("to")) {
+		System.out.println("Talk what?");
+	} else {
+		String characterName = command.getThirdWord();
+		if(currentRoom.getRoomCharacter().getName().equals(characterName)) {
+			currentRoom.getRoomCharacter().talk();
+		} else {
+			System.out.println("That character is not in the room!");
+		}
+	}
+}
+	
 	private void useItem(Command command) {
 		String itemToUse = command.getSecondWord();
 		// Add this item to the roomInventory

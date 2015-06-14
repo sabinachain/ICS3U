@@ -1,3 +1,4 @@
+/*
 package com.bayviewglen.zork;
 
 public class Weapon extends Item {
@@ -34,4 +35,4 @@ public class Weapon extends Item {
 	}
 
 }
-
+*/

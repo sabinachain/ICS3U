@@ -4,26 +4,27 @@ import java.io.Serializable;
 
 public class Character implements Serializable {
 	private String name;
-	private int hp;
+	private String talkString;
 	private Inventory inventory;
 
-public Character(String name, int hp, Inventory inventory) {
+public Character(String name, String talkString, Inventory inventory) {
 	super();
 	this.name = name;
-	this.hp = hp;
+	this.talkString = talkString;
 	this.inventory = inventory;
 	}
 
 public Character(String name, int hp) {
 	super();
 	this.name = name;
-	this.hp = hp;
+	this.talkString = talkString;
 	this.inventory = null;
 	}
 
 public Character() {
 	super();
-	this.hp = 0;
+	this.name = "";
+	this.talkString = "";
 	this.inventory = null;
 	}
 
@@ -35,12 +36,12 @@ public void setName(String name) {
 	this.name = name;
 }
 
-public int getHp() {
-	return hp;
+public String getTalkString() {
+	return talkString;
 }
 
-public void setHp(int hp) {
-	this.hp = hp;
+public void setTalkString(String talkString) {
+	this.talkString = talkString;
 }
 
 public Inventory getInventory() {
@@ -49,6 +50,10 @@ public Inventory getInventory() {
 
 public void setInventory(Inventory inventory) {
 	this.inventory = inventory;
+}
+
+public void talk() {
+	System.out.println(talkString);
 }
 
 

@@ -6,11 +6,11 @@ Special features of the Game:
 Teleporter to Random room 
 "back" command that lets you go back to the previous room infinitely until you reach the first room you were in.
 Load/Save functionality
-Loading rooms, items
-Customizable data files for rooms, items
+Loading rooms, items, and characters
+Customizable data files for rooms, items, and characters
 Parser that recognizes 4-word commands
 Player and room inventories 
-Includes many commands: "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "random", "n", "e", "s", "w", "u", "d","items", "save", "xyzzy"
+Includes many commands: "go", "back", "quit", "help", "eat", "use", "take", "drop", "give", "hit", "talk", "random", "n", "e", "s", "w", "u", "d","items", "save", "xyzzy"
 
 Implementation Description:
 To implement the functions to load and save, all of the functions are implementing the "Serializable" interface.
@@ -21,10 +21,8 @@ Item is the class implementing the items along with a use function.
 Parser is a 4-word parser created to manage different commands listed. 
 Command and CommandWords are the implementations of the different commands.
 Character, Weapon classes are not very developed in the actual game itself but contain basic methods for usage. 
-Zork is the main and where files are saved/loaded if they exist.  
-
+Zork is the main and where files are saved/loaded if they exist.
 
 Bugs in the Game:
-Not able to win as the game is not completed with characters implemented. 
-Character methods exist in the "characters" class and sample characters were added in the characters.dat file, but they do not yet exist in the game.
-Weapon methods exist but similarly, weapons do not exist in the game.
+Not able to win as the game is not completed with advanced character interactions implemented - characters are in. 
+Weapon methods exist but weapons do not exist in the game.
