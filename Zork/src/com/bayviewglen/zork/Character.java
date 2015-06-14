@@ -14,11 +14,11 @@ public Character(String name, String talkString, Inventory inventory) {
 	this.inventory = inventory;
 	}
 
-public Character(String name, int hp) {
+public Character(String name, String talkString) {
 	super();
 	this.name = name;
 	this.talkString = talkString;
-	this.inventory = null;
+	this.inventory = new Inventory();
 	}
 
 public Character() {
