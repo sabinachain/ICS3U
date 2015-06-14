@@ -145,7 +145,7 @@ class Game implements java.io.Serializable {
 				// (example) Character: Saba; "Talk string"
 				String characterList = characterScanner.nextLine();
 				String[] characterV = characterList.split(":")[1].split(";");
-				Character myCharacter = new Character(characterV[0], characterV[1], null);
+				Character myCharacter = new Character(characterV[0], characterV[1], new Inventory());
 
 				Room myRoom = masterRoomMap.get(keyRoom);
 				if (myRoom != null) {
@@ -380,6 +380,7 @@ class Game implements java.io.Serializable {
 								.getSecondWord()); // Removes item from player
 						currentRoom.getRoomCharacter().getInventory()
 								.addItem(i); // Gives it to non-player character
+						System.out.println("You have given the " + i.getName() + " to " + currentRoom.getRoomCharacter().getName() + ".");
 					}
 				} else {
 					System.out.println("That character is not in this room!");
