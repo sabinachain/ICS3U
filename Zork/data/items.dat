@@ -1,11 +1,9 @@
-Room Name: Common Area
-Item:USB;You downloaded the data onto the laptop, but it is encrypted. Better find someone to help you decrypt it!;0.02 
 Room Name: Room 106
 Item:note;It's a note from Mr. DesLauriers. It says that your CompSci Project is due in an hour. Better finish it, or email him to ask for an extension.;0.01  
 Room Name: Room 106
 Item:laptop;You try to send an email to Mr. DesLauriers, but the wifi is down.;2
 Room Name: IT Office 
-Item:wifi-router;Reconnect it to turn on WIFI and get internet access.;0
+Item:wifi router;Reconnect it to turn on WIFI and get internet access.;0
 Room Name: Gym Hallway
 Item:protein-bar;Mmm, so good, so strong.;0.1
 Room Name: Gym Hallway
