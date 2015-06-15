@@ -7,21 +7,18 @@ public class Item implements Serializable {
 	private double weight;
 	private String usage;
 
-	// constructor with arguments name, usage, weight
 	public Item(String n, String u, double w) {
 		this.name = n;
 		this.usage = u;
 		this.weight = w;
 	}
 
-	// constructor without arguments
 	public Item() {
 		this.name = "";
 		this.usage = "";
 		this.weight = 0;
 	}
-
-	// getters and setters
+	
 	public String getName() {
 		return name;
 	}
@@ -46,7 +43,6 @@ public class Item implements Serializable {
 		this.weight = weight;
 	}
 
-	// use function for the item
 	public void use() {
 		System.out.println(usage);
 	}

@@ -45,7 +45,7 @@ class Room implements Serializable
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
     	roomInventory = new Inventory(true); //For room, we must call the constructor with max double limit 
-    	roomCharacter = new Character(); //Construct a dummy to prevent a NullPointerException
+    	roomCharacter = new Character();
 	}
 
     public void setExit(char direction, Room r) throws Exception{
@@ -101,7 +101,7 @@ class Room implements Serializable
      */
     public String longDescription()
     {    	
-        return "Room: " + roomName +"\n" + description + "\n" + inventoryString() + "\n" + characterString() + "\n" + exitString();
+        return "Room: " + roomName +"\n" + description + "\n" + inventoryString()+ "\n" + exitString();
     }
 
     /**
@@ -128,18 +128,6 @@ class Room implements Serializable
         String returnString = "Room contains: ";
 		returnString += roomInventory.stringInventory();
         return returnString; 
-    }
-    
-    /**
-     * Return a string describing the room's inventory, for example:
-     * "Room contains: piano, usb, key"
-     */
-
-    private String characterString()
-    {
-        String returnString = "Characters in Room: ";
-		returnString += roomCharacter.getName();
-        return returnString;
     }
 
     /**

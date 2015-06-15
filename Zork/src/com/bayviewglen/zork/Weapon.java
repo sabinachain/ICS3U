@@ -1,4 +1,3 @@
-/*
 package com.bayviewglen.zork;
 
 public class Weapon extends Item {
@@ -27,7 +26,7 @@ public class Weapon extends Item {
 	}
 	
 	public void dealDamage(Character c) {
-		if(Math.random()>0.05){ //95% chance
+		if(Math.random()>0.2){ //80% chance
 			c.setHp(c.getHp()-this.getDamage()); //Straight damage counter, very basic
 		} else {
 			System.out.println("Missed!"); //Enemy dodging is completely random chance
@@ -35,4 +34,4 @@ public class Weapon extends Item {
 	}
 
 }
-*/
+

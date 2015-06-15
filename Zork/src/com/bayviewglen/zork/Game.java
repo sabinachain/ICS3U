@@ -36,10 +36,11 @@ class Game implements java.io.Serializable {
 											// command.
 	private HashMap<String, Room> masterRoomMap; // Keeps track of all available
 													// rooms.
-	private Inventory playerInventory; // The player's items - initially empty by
+	private Inventory playerInventory; // The player's items - initally empty by
 										// default.
 	final static String SAVED_GAME_FILE = "savegame.data"; // File will be used
 															// on 'save'command.
+	int playerHealth = 800; // Global variable for player health. It starts at 800
 
 	// load available rooms from the rooms.dat data file
 	private void initRooms(String fileName) throws Exception {
@@ -115,7 +116,6 @@ class Game implements java.io.Serializable {
 				String[] itemV = itemList.split(":")[1].split(";");
 				Item myItem = new Item(itemV[0], itemV[1],
 						Double.parseDouble(itemV[2]));
-
 				Room myRoom = masterRoomMap.get(keyRoom);
 				if (myRoom != null) {
 					myRoom.getRoomInventory().addItem(myItem);
@@ -129,8 +129,7 @@ class Game implements java.io.Serializable {
 			e.printStackTrace();
 		}
 	}
-
-	// Loads available characters from characters.dat file
+	
 	private void initCharacters(String fileName) throws Exception {
 		Scanner characterScanner;
 		try {
@@ -139,26 +138,36 @@ class Game implements java.io.Serializable {
 				// Room: Room 106
 				String roomLine = characterScanner.nextLine();
 				String fullRoomName = roomLine.split(":")[1].trim();
-				String keyRoom = fullRoomName.toUpperCase()
-						.replaceAll(" ", "_");
+				String keyRoom = fullRoomName.toUpperCase().replaceAll(" ", "_");
 
-				// (example) Character: Saba; "Talk string"
-				String characterList = characterScanner.nextLine();
-				String[] characterV = characterList.split(":")[1].split(";");
-				Character myCharacter = new Character(characterV[0], characterV[1], new Inventory());
-
+				// (example) Item: USB; using USB;0.001
+				String characterDescription = characterScanner.nextLine();
+				String[] characterDescriptionArr = characterDescription.split(";");
+				String content = characterScanner.nextLine();
+				String[] items = content.split("/");
+				String[] itemsSplitOne = items[0].split(";");
+				String[] itemsSplitTwo = items[1].split(";");
+				Item itemOne = new Item(itemsSplitOne[0], itemsSplitOne[1], Double.parseDouble(itemsSplitOne[2]));
+				Item itemTwo = new Item(itemsSplitTwo[0], itemsSplitTwo[1], Double.parseDouble(itemsSplitTwo[2]));
+				Inventory Items = new Inventory();
+				Items.addItem(itemOne);
+				Items.addItem(itemTwo);
+				Character parsedCharacter = new Character(characterDescriptionArr[0], characterDescriptionArr[1], Integer.parseInt(characterDescriptionArr[2]), Items);
 				Room myRoom = masterRoomMap.get(keyRoom);
 				if (myRoom != null) {
-					myRoom.setRoomCharacter(myCharacter);
+					myRoom.setRoomCharacter(parsedCharacter);
+					
+					
 				} else {
 					// no room with this name
 				}
 			}
-
-			characterScanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			
+				characterScanner.close();
+			
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 	}
 
 	/**
@@ -202,7 +211,9 @@ class Game implements java.io.Serializable {
 	private void printWelcome() {
 		System.out.println();
 		System.out.println("Welcome to Zork: The Search for the Lost Code.");
+		try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
 		System.out.println("Zork is a new, incredibly boring adventure game. Finish your Computer Science Project successfully to win.");
+		try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -223,8 +234,6 @@ class Game implements java.io.Serializable {
 			printHelp();
 		else if (commandWord.equals("go"))
 			goRoom(command);
-		else if(commandWord.equals("random"))
-			randomRoom(command);
 		else if (commandWord.equals("back"))
 			backRoom(command);
 		else if (commandWord.equals("quit")) {
@@ -233,11 +242,10 @@ class Game implements java.io.Serializable {
 			else
 				return true; // signal that we want to quit
 		} else if (commandWord.equals("eat")) {
-			System.out.println("Do you really think you should be eating at a time like this?");
+			System.out
+					.println("Do you really think you should be eating at a time like this?");
 		} else if (commandWord.equals("use")) {
 			useItem(command);
-		} else if (commandWord.equals("talk")) {
-			talk(command);			
 		} else if (commandWord.equals("items")) {
 			playerInventory.displayInventory();
 		} else if (commandWord.equals("drop")) {
@@ -248,6 +256,10 @@ class Game implements java.io.Serializable {
 			giveItem(command);
 		} else if (commandWord.equals("hit")) {
 			hitThing(command);
+		} else if (commandWord.equals("smash")) {
+			System.out.println("smash what?"); // Placeholder
+		} else if (commandWord.equals("attack") || commandWord.equals("brawl") || commandWord.equals("fight") || commandWord.equals("battle")) {
+			attackCharacter(command); // Only for characters
 		} else if (commandWord.equals("n")) {
 			processCommand(new Command("go", "north", "", ""));
 		} else if (commandWord.equals("e")) {
@@ -283,20 +295,66 @@ class Game implements java.io.Serializable {
 
 	// implementations of user commands:
 
-	private void talk(Command command) {
+	private void attackCharacter(Command command) {
+		String characterToAttack = command.getSecondWord();
 		
-	if(!command.getSecondWord().equals("to")) {
-		System.out.println("Talk what?");
-	} else {
-		String characterName = command.getThirdWord();
-		if(currentRoom.getRoomCharacter().getName().equals(characterName)) {
-			currentRoom.getRoomCharacter().talk();
+		if (characterToAttack == null) {
+				System.out.println(currentRoom.getRoomCharacter().getName() + " is in the room.  Who do you want to attack?");
 		} else {
-			System.out.println("That character is not in the room!");
+			if (currentRoom.getRoomCharacter().getName() == null) {
+				System.out.println("There is no character in the room to attack");
+			} else {
+			int health = currentRoom.getRoomCharacter().getHp(); // character's health
+			int healthToSave = health; // copy the character health to add to first player's health later in the case of a fight
+			System.out.println("You have "+ playerHealth + " health and " + currentRoom.getRoomCharacter().getName() + " has " + health + " health.  If you win the fight, you get an additional " + health + " health and "+ currentRoom.getRoomCharacter().getName() + "'s ");
+			currentRoom.getRoomCharacter().getInventory().displayInventory();
+			System.out.println("Are you sure you want to fight? (Y/N)");
+			Scanner keyboard = new Scanner(System.in);
+			String response = keyboard.nextLine();
+			if (response.equalsIgnoreCase("y")){
+				while (playerHealth > 0 && health > 0) {
+					int playerHit = (int) (Math.random() * 100); // Power of hits are randomized each turn
+					int characterHit = (int) (Math.random() * 100);
+					System.out.println("You hit " + currentRoom.getRoomCharacter().getName() + " with " + playerHit + " power.");
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();} 
+					System.out.println(currentRoom.getRoomCharacter().getName() + " hits you with " + characterHit + " power.");
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
+					playerHealth -= characterHit; // adjust healths
+					health -= playerHit;
+					System.out.println("Your health: " + playerHealth);
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
+					System.out.println("Opponent's health: " + health);
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
+				}
+				if (health <= 0) {
+					playerHealth += healthToSave;
+					System.out.println("You won! You suck the health out of " + currentRoom.getRoomCharacter().getName() + "'s sleeping body.");
+					System.out.println("Your health is now: " + playerHealth);
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
+					System.out.println("You take " + currentRoom.getRoomCharacter().getName() + "'s");
+					String[] inventoryItems = currentRoom.getRoomCharacter().getInventory().stringItems();
+					for (int i = 0; i < inventoryItems.length; i++) {
+						if (i > 0) {
+							System.out.print(" and ");
+						}
+						System.out.print(inventoryItems[i]);
+						Item item = currentRoom.getRoomCharacter().getInventory().getItem(inventoryItems[i]);
+						playerInventory.addItem(item);
+						currentRoom.getRoomCharacter().getInventory().removeItem(inventoryItems[i]);
+					}
+				} else {
+					System.out.println("You have been killed...");
+					try {Thread.sleep(700);} catch (InterruptedException e) {e.printStackTrace();}
+					System.out.println("The game is now over.  Try again!");
+					System.exit(0);
+				}
+			}
+			}
 		}
+			
+		
 	}
-}
-	
+
 	private void useItem(Command command) {
 		String itemToUse = command.getSecondWord();
 		// Add this item to the roomInventory
@@ -360,8 +418,8 @@ class Game implements java.io.Serializable {
 	}
 
 	private void giveItem(Command command) {
-		// gives item to non-player character
-		// not called anywhere as characters not yet implemented
+		//gives item to non-player character
+		//not called anywhere as characters not yet implemented
 		if (!command.hasSecondWord()) // if it lacks a second word
 			System.out.println("give what?"); // Placeholder
 		else if (playerInventory.hasItem(command.getSecondWord())) {
@@ -373,14 +431,12 @@ class Game implements java.io.Serializable {
 																// now
 				if (command.hasFourthWord()) {
 					if (command.getFourthWord().equals(
-							currentRoom.getRoomCharacter().getName()))
-						;
+							currentRoom.getRoomCharacter().getName()));
 					{
 						Item i = playerInventory.removeItem(command
 								.getSecondWord()); // Removes item from player
 						currentRoom.getRoomCharacter().getInventory()
 								.addItem(i); // Gives it to non-player character
-						System.out.println("You have given the " + i.getName() + " to " + currentRoom.getRoomCharacter().getName() + ".");
 					}
 				} else {
 					System.out.println("That character is not in this room!");
@@ -396,8 +452,7 @@ class Game implements java.io.Serializable {
 	private void hitThing(Command command) {
 		if (!command.hasSecondWord()) // if it lacks a second word
 			System.out.println("hit what?"); // Placeholder
-		if (command.getSecondWord().equals(
-				currentRoom.getRoomCharacter().getName()))
+		if (command.getSecondWord().equals(currentRoom.getRoomCharacter().getName()))
 			;
 		{
 			if (!command.hasThirdWord()) {
@@ -420,9 +475,9 @@ class Game implements java.io.Serializable {
 				currentRoom.getRoomCharacter().getName())) {
 			System.out.println("That character is not in the room.");
 		}
-	}
+	} 
 
-	// Prints the help text.
+	//Prints the help text.
 	private void printHelp() {
 		System.out.println("You are lost. You are alone. You wander");
 		System.out.println("around at Bayview Glen, Moatfield Campus.");
@@ -453,24 +508,10 @@ class Game implements java.io.Serializable {
 			roomHistory.add(currentRoom);
 			currentRoom = nextRoom;
 			System.out.println(currentRoom.longDescription());
-		}
-	}
-
-	// Magically teleports you to a random room when you type command 'random'.
-	private void randomRoom(Command command) {
-		int rand = (int) (Math.random() * masterRoomMap.keySet().size());
-		int count = 0;
-		Room nextRoom = null;
-		for (String key : masterRoomMap.keySet()) {
-			if (count == rand) {
-				nextRoom = masterRoomMap.get(key);
-				break;
+			if (currentRoom.getRoomCharacter().getName() != null) {
+			System.out.println("In this room is " + currentRoom.getRoomCharacter().getName());
 			}
-			count++;
 		}
-		roomHistory.add(currentRoom);
-		currentRoom = nextRoom;
-		System.out.println(currentRoom.longDescription());
 	}
 
 	/**
