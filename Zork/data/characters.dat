@@ -1,10 +1,12 @@
-Room Name: Math Hallway
-Character:Saba;"Hello. Do you need help with your coding project? Here is a USB with important code."
+Room Name: Common Area
+Saba;"Hello. Do you need help with your coding project? I have a USB with important code.  Fight me for it.";100
+USB;You downloaded the data onto the laptop, but it is encrypted. Better find someone to help you decrypt it!;0.02 / A Book Entitled "Sabataging for Dummies"; You now have the secrets of Saba's success;.05
 Room Name: IT Office
-Character:Mr.Toorie;"Let me re-image your computer for you!"
-Room Name: Music Hallway
-Character:Ross;"Uh, I'll probably just literally haunt your Eclipse and break everything. Sure this is a good idea?"
+Michael Toorie;"Let me reimage your computer for you!  Fight me for the right not to be reimaged.";700
+Portable Reimager; You now have the most terrifying tool in all the world;1 /Fitness Magazine: How to Get The Summer Bikini Body;Mr. Toorie's secret to success;.02
+Room Name: Math Hallway
+Ross' Dad ;"You guys are huge nerds. And your code is wrong. Who taught you to code like that? I have decrypted your precious data, but you must fight me for it.";750
+Ross's Baby Pictures; You examine the majestic baby pictures of Ross; .1/Decrypted Data; The precious decrypted data.  The project is finally completed!  You will not get a zero!; 0.5
 Room Name: Room 106
-Character:Mr.DesLauriers;"Finish your zork."
-Room Name: Grade 11 Area
-Character:Mathew;"Literally the easiest thing."
+Mr. Deslauriers;"Finish your project! Stat!!!";1000000000
+Spiderman's Secrets of Web Development; Spiderman wrote a book! Wow!;.3/Kevin Lu's Computer Science Report Card; As you open up the report card, your eyes begin to water.  It's a miracle!; 1
